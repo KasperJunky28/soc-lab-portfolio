@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Identity & Core Services</title>
+    <link rel="stylesheet" href="../SOC Project/identity-and-services.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="../index.html">🏠 Home</a>
+    <a href="../SOC Project/soc-lab-project.html">Project Overview</a>
+    <a href="../SOC Project/Network-Overview.html">Network Overview</a>
+    <a href="../SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="../SOC Project/identity-and-services.html" class="active">identity and services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-simulation.html">Attack Simulation</a>
+    <a href="/SOC Project/detection-&-siem.html">Detection & SIEM</a>
+    <a href="/SOC Project/lessons-learned.html">Lessons Learned</a>
+</div>
+
+<div class="main">
+
+<h1>Identity & Core Services</h1>
+
+<!-- 🎯 Phase Goal -->
+<div class="card">
+    <h2>Phase Goal</h2>
+    <p>
+        Establish centralized identity management and core network services
+        required for authentication, communication, and system synchronization
+        across the enterprise environment.
+    </p>
+    <ul>
+        <li>Domain controller - IP, DNS, DHCP, NTP, Active Directory</li>
+        <li>Clients - IP, connect to Domain</li>
+        <li>Created domain (corp.local) and test communication</li>
+    </ul>
+</div>
+
+<!-- 🧱 Domain Setup -->
+<div class="card">
+    <h2>Domain Setup (Windows Server)</h2>
+
+    <div class="step">
+        <h3>Services Installation</h3>
+
+        <p>
+            Installed Active Directory Domain Services, DHCP and DNS, and promoted the server
+            to a Domain Controller.
+        </p>
+
+        <p><strong>Why this matters:</strong><br></p>
+        <ul>
+            <li>Active Directory provides centralized authentication and is a primary
+            target for attackers in enterprise environments.</li>
+            <li>DHCP provided dynamic IP addresses to clients on the network.</li>
+            <li>DNS resolves IP addresses to names.</li>
+        </ul>
+
+        <!-- 🔁 images -->
+        <div class="VM-network-images">
+            <!-- duplicate this block -->
+            <div class="image-card">
+                <div class="image-title">AD, DHCP and DNS services Installation</div>
+                <img src="/SOC Project/images/identity and services/DC/domain installation/SERVICE INSTALLATION.png" style="height: 600px;">
+            </div>
+            <div class="image-card" id="domain-installed">
+                <div class="image-title">Domain is configured and AD is Installed</div>
+                <img src="/SOC Project/images/identity and services/DC/domain installation/DOMAIN IS INSTALLED.png" style="height: 500px;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- basic configuration Setup -->
+<div class="card">
+    <h2>Basic configuration (Domain Controller)</h2>
+
+    <div class="step">
+        <h3>IP and Name configuration</h3>
+
+        <ul>
+            <li> a static IP address to the DC on the local subnet.</li>
+            the default gateway will be the SIEM server (192.168.59.40).
+            the DNS server will be the DC.
+            <li>Rename the Device to DC01.</li>
+        </ul>
+
+        <p><strong>Why this matters:</strong><br>
+        add the server to the internal Corporate network
+        </p>
+
+        <!-- 🔁 images -->
+        <div class="VM-network-images">
+            <!-- duplicate this block -->
+            <div class="image-card">
+                <div class="image-title">IP configuration</div>
+                <img src="/SOC Project/images/identity and services/DC/basic conf/IP CONF.png" style="height: 500px;">
+            </div>
+
+            <div class="image-card">
+                <div class="image-title">Rename server</div>
+                <img src="/SOC Project/images/identity and services/DC/basic conf/RENAME.png" style="height: 500px;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- AD Setup -->
+<div class="card">
+    <h2>AD</h2>
+
+    <div class="step">
+        <h3>Active Directory setup</h3>
+
+        <ul>
+            <li>Setting up Active Directory</li>
+            <li>creating organizational Units and Groups:</li>
+            <li>employees, servers, workstations, Domain Controllers, users, Groups</li>
+        </ul>
+
+        <p><strong>Why this matters:</strong><br>
+        Active Directory provides centralized authentication and is a primary
+        target for attackers in enterprise environments.
+        </p>
+
+        <!-- 🔁 images -->
+        <div class="VM-network-images">
+            <!-- duplicate this block -->
+            <div class="image-card">
+                <div class="image-title">Create OU - "Domain Controllers"</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT - ADMIN.png">
+            </div>
+            <div class="image-card">
+                <div class="image-title">Create OU - "Employees" (Departments)</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT - EMPLOYEES GROUPS.png">
+            </div>
+
+            <div class="image-card" id="domain-installed">
+                <div class="image-title">Create Users inside Departments</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT - USERS.png">
+            </div>
+            <div class="image-card" id="domain-installed">
+                <div class="image-title">Create OU - "Groups", add groups inside</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  GROUPS.png">
+            </div>
+
+            <div class="image-card">
+                <div class="image-title">add users to groups</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/USER IS IN GROUP.png">
+            </div>
+            <div class="image-card">
+                <div class="image-title">add servers to "servers"</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  SERVERS.png" style="height: 400px;">
+            </div>
+            <div class="image-card" >
+                <div class="image-title">add computers to "workstations"</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  WORKSTATIONS.png" style="height: 400px;">
+            </div>
+
+            <div class="image-card">
+                <div class="image-title">Create new user</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/AD - NEW USER.png" style="height: 400px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">create weak password for the new user (abc123456!)</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/AD - WEAK USER.png">
+            </div>
+            <div class="image-card">
+                <div class="image-title">add new user to a group</div>
+                <img src="/SOC Project/images/identity and services/DC/AD/AD- ADD USER TO GROUP.png" style="height: 400px;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 🌐 DNS -->
+<div class="card">
+    <h2>DNS Configuration</h2>
+
+    <div class="step">
+        <p>
+            Configured DNS to support domain name resolution within the network.
+        </p>
+
+        <p><strong>Why this matters:</strong><br>
+        DNS is essential for domain functionality and is often abused in
+        attack techniques such as DNS tunneling.
+        </p>
+
+        <ul>
+            <li>Configured DNS on Domain Controller</li>
+            <li>Verified name resolution</li>
+        </ul>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <div class="image-title">DNS Configuration</div>
+                <img src="/SOC Project/images/identity and services/DC/DNS/DNS CONF.png">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 📡 DHCP -->
+<div class="card">
+    <h2>DHCP Configuration</h2>
+
+    <div class="step">
+        <p>
+            Configured DHCP to automatically assign IP addresses to client machines.
+        </p>
+
+        <p><strong>Why this matters:</strong><br>
+        DHCP simplifies network management and ensures consistent IP allocation
+        across the environment.
+        </p>
+
+        <ul>
+            <li>Created DHCP scope</li>
+            <li>Assigned IP range</li>
+            <li>Configured default gateway and DNS</li>
+        </ul>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <div class="image-title">Add domain to DHCP</div>
+                <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP ADD DC01.png">
+            </div>
+        </div>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <div class="image-title">Create new DHCP scope</div>
+                <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP NEW SCOPE.png">
+            </div>
+
+            <div class="image-card">
+                <div class="image-title">add IP range to the scope</div>
+                <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP NEW SCOPE 2.png">
+            </div>
+
+            <div class="image-card">
+                <div class="image-title">Configure Gateway address to DHCP</div>
+                <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP GATEWAY.png">
+            </div>
+
+            <div class="image-card">
+                <div class="image-title">Configure DNS address to DHCP</div>
+                <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP DNS.png">
+            </div>
+
+            <div class="image-card" id="dhcp-show">
+                <div class="image-title">clients outomatically recieve IP addresses</div>
+                <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP SHOW.png" style="width: 700px;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 🔐 Domain Join -->
+<div class="card">
+    <h2>Domain Join</h2>
+
+    <div class="step">
+        <p>
+            Joined all machines to the domain and verified authentication.
+        </p>
+
+        <p><strong>Why this matters:</strong><br>
+        Domain joining enables centralized authentication and policy enforcement,
+        which are essential for enterprise security monitoring.
+        </p>
+
+        <ul>
+            <li>Configured static IP / DHCP</li>
+            <li>Joined clients to domain</li>
+            <li>Verified login with domain users</li>
+        </ul>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <div class="image-title">Add PC to the domain</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/ADD PC TO DOMAIN.png" style="height: 450px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">PC is added to the domain</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/PC IS CONNECTED TO DOMAIN.png" style="height: 400px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">the computer communicates with the DC</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/PING.png" style="height: 550px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">sign in with the user Created</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/SIGH IN WITH NEW USER.png" style="height: 500px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">the computer uses the corporate DNS</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/DNS RESOLVE.png" style="height: 250px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">the computer recieves an IP address from the DHCP</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/PC RECIVES IP.png" style="height: 250px;">
+            </div>
+            <div class="image-card">
+                <div class="image-title">user settings</div>
+                <img src="../SOC Project/images/identity and services/CLIENT/USER SETTINGS.png" style="height: 400px;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<!-- 🔥 Modal for zoom -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

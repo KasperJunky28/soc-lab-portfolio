@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Overview</title>
+    <link rel="stylesheet" href="network-overview.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="/index.html">🏠 Home</a>
+    <a href="/SOC Project/soc-lab-project.html">Project Overview</a>
+    <a href="/SOC Project/Network-Overview.html" class="active">Network Overview</a>
+    <a href="/SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-simulation.html">Attack Simulation</a>
+    <a href="/SOC Project/detection-&-siem.html">Detection & SIEM</a>
+    <a href="/SOC Project/lessons-learned.html">Lessons Learned</a>
+</div>
+
+<div class="main">
+
+<h1>Network Overview</h1>
+
+<!-- ARCHITECTURE -->
+<div class="card">
+    <h2>Network Architecture</h2>
+
+    <ul class="network-list">
+        <li><strong>Internal Network:</strong> 192.168.59.0/24</li>
+        <li><strong>Domain Controller:</strong> 192.168.59.10</li>
+        <li><strong>SIEM Server:</strong> 192.168.59.40 / 192.168.100.1</li>
+        <li><strong>Clients:</strong> DHCP range</li>
+        <li><strong>Attacker Network:</strong> 192.168.100.0/24</li>
+    </ul>
+
+    <p class="why-text">
+        The lab is divided into internal corporate and attacker networks,
+        allowing realistic simulation of lateral movement and external threats.
+    </p>
+</div>
+
+<!-- DIAGRAM -->
+<div class="card">
+    <h2>Network Diagram</h2>
+
+    <img src="images/Network Diagram.png" alt="Network Diagram" class="diagram">
+</div>
+
+<!-- COMPONENTS -->
+<div class="card">
+    <h2>Key Components</h2>
+
+    <ul class="components-list">
+        <li><strong>Domain Controller:</strong> Identity, DNS, DHCP, NTP</li>
+        <li><strong>SIEM Server:</strong> Log collection and detection</li>
+        <li><strong>Endpoints:</strong> User activity simulation</li>
+        <li><strong>Attacker Machine:</strong> Offensive testing</li>
+    </ul>
+</div>
+
+<!-- WHY -->
+<div class="card">
+    <h2>Why This Matters</h2>
+
+    <p class="why-text">
+        Understanding network architecture is critical for detecting anomalies,
+        identifying lateral movement, and analyzing attack patterns.
+    </p>
+</div>
+
+</div>
+
+</body>
+</html>

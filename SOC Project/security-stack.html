@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Stack</title>
+    <link rel="stylesheet" href="security-stack.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="../index.html">🏠 Home</a>
+    <a href="../SOC Project/soc-lab-project.html">Project Overview</a>
+    <a href="../SOC Project/Network-Overview.html">Network Overview</a>
+    <a href="../SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="../SOC Project/identity-and-services.html">identity and services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html" class="active">Security Stack</a>
+    <a href="/SOC Project/attack-simulation.html">Attack Simulation</a>
+    <a href="/SOC Project/detection-&-siem.html">Detection & SIEM</a>
+    <a href="/SOC Project/lessons-learned.html">Lessons Learned</a>
+</div>
+
+<div class="main">
+
+<h1>Security Stack</h1>
+
+<!-- 🎯 Overview -->
+<div class="card">
+    <h2>Overview</h2>
+
+    <div class="step">
+        <p>
+            The SOC lab security stack combines endpoint monitoring, network detection,
+            and centralized SIEM analysis to provide full visibility across the environment.
+        </p>
+
+        <ul>
+            <li>Endpoint visibility using Sysmon</li>
+            <li>Network monitoring using Suricata IDS</li>
+            <li>Centralized log analysis with Wazuh SIEM</li>
+        </ul>
+        <p style="margin-top: 10px;"></p>
+                <h3>Wazuh SIEM</h3>
+        <p>
+            Central platform responsible for log collection, correlation, and alerting.
+        </p>
+
+        <h3>Sysmon</h3>
+        <p>
+            Provides detailed endpoint telemetry including process creation and network activity.
+        </p>
+
+        <h3>Suricata IDS</h3>
+        <p>
+            Monitors network traffic and detects malicious activity using rules and signatures.
+        </p>
+
+        <h3>Windows Event Logs</h3>
+        <p>
+            Provides authentication and system-level logging across domain machines.
+        </p>
+    </div>
+</div>
+
+<!-- wazuh server -->
+<div class="card">
+    <h2>Wazuh Server (Ubuntu)</h2>
+    <div class="step">
+        <p>wazuh server: add here</p>
+        <ul>
+            <li>add here</li>
+        </ul>
+        <h3 class="image-title">*</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+        <h3 class="image-title">*</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+        <h3 class="image-title">*</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card">
+    <h2>Wazuh agent (Ubuntu)</h2>
+    <div class="step">
+        <p>wazuh server: add here</p>
+        <ul>
+            <li>add here</li>
+        </ul>
+        <h3 class="image-title">*</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+        <h3 class="image-title">*</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+        <h3 class="image-title">*</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- wazuh agent - windows -->
+<div class="card">
+    <h2>Wazuh agent (Windows)</h2>
+
+    <div class="step">
+
+        <h3 class="image-title">Wazuh agent Installation</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- sysmon -->
+<div class="card">
+    <h2>Sysmon (Windows)</h2>
+    <div class="step">
+        <p>Sysmon is installed on Windows clients and servers for detailed endpoint telemetry.</p>
+        <ul>
+            <li>Servers: DC01, FILE01</li>
+            <li>Clients: IT01, HR01</li>
+            <li>The installation procces is the same on all machines</li>
+        </ul>
+        <h3 class="image-title">Sysmon agent Installation</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+        <h3 class="image-title">Sysmon agent Log Collection</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+        <h3 class="image-title">Connecting Sysmon to Wazuh</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+            <div class="image-card">
+                <p class="image-title">*</p>
+                <img src="images/">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 🔄 Data Flow -->
+<div class="card">
+    <h2>Data Flow</h2>
+
+    <div class="step">
+        <p>
+            Endpoint logs are generated by Sysmon and Windows logging mechanisms.
+            These logs are collected by Wazuh agents and forwarded to the SIEM.
+        </p>
+
+        <p>
+            Suricata monitors network traffic and generates alerts based on suspicious patterns.
+        </p>
+
+        <p>
+            All data is centralized in Wazuh where detection rules trigger alerts
+            and security events are analyzed.
+        </p>
+    </div>
+</div>
+
+<!-- 🚨 Detection -->
+<div class="card">
+    <h2>Detection Capabilities</h2>
+
+    <div class="step">
+        <ul>
+            <li>Brute-force login attempts</li>
+            <li>Suspicious process execution</li>
+            <li>Network scanning activity</li>
+            <li>Privilege escalation behavior</li>
+            <li>Known attack signatures (Suricata)</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

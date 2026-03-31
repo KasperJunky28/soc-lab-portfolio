@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enterprise Services</title>
+    <link rel="stylesheet" href="enterprize-services.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="/index.html">🏠 Home</a>
+    <a href="soc-lab-project.html">Project Overview</a>
+    <a href="network-overview.html">Network Overview</a>
+    <a href="infrastructure.html">Infrastructure</a>
+    <a href="identity-and-services.html">Identity & Services</a>
+    <a href="/SOC Project/enterprize-services.html" class="active">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-simulation.html">Attack Simulation</a>
+    <a href="/SOC Project/detection-&-siem.html">Detection & SIEM</a>
+</div>
+
+<div class="main">
+
+<h1>Enterprise Services</h1>
+
+<!-- FILE SERVER -->
+<div class="card">
+    <h2>File Server (Windows Server)</h2>
+
+    <div class="step">
+        <h3>Shared Folders & Permissions</h3>
+
+        <p>
+            Configured shared folders on the Domain Controller to simulate
+            organizational file access.
+        </p>
+
+        <ul>
+            <li>Created shared directories</li>
+            <li>Assigned permissions to users and groups</li>
+            <li>Tested access from client machines</li>
+        </ul>
+
+        <h3 class="image-title">Network Configuration</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">IP configuration</p>
+                <img src="images/enterprize services/file server/PC CONF/ip conf.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">PC rename</p>
+                <img src="images/enterprize services/file server/PC CONF/rename.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">File Share Creation</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">create folder</p>
+                <img src="images/enterprize services/file server/FILE SHARE/create shares file.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">share main folder</p>
+                <img src="images/enterprize services/file server/FILE SHARE/share main folder.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">create sub-folders</p>
+                <img src="images/enterprize services/file server/FILE SHARE/create sub-folders.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">share sub-folders</p>
+                <img src="images/enterprize services/file server/FILE SHARE/share sub folder.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">File Share Permissions</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">Permissions: Read for everyone</p>
+                <img src="images/enterprize services/file server/FILE SHARE/read prem for everyone.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Permissions: full control for IT admins</p>
+                <img src="images/enterprize services/file server/FILE SHARE/full control for IT admins.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">IT admin trying to create file in Finance folder</p>
+                <img src="images/enterprize services/file server/FILE SHARE/try modify finance .png">
+            </div>
+            
+            <div class="image-card">
+                <p class="image-title">IT admin fails to create file in Finance folder</p>
+                <img src="images/enterprize services/file server/FILE SHARE/try modify finance - fail .png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">IT admin succeeds to create file in IT folder</p>
+                <img src="images/enterprize services/file server/FILE SHARE/try modify it- succes .png">
+            </div>
+        </div>
+
+        <h3 class="image-title">DNS</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">nslookup</p>
+                <img src="images/enterprize services/file server/FILE SHARE/nslookup.png">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- WEB SERVER -->
+<div class="card">
+    <h2>Web Server (Ubuntu)</h2>
+
+    <div class="step">
+        <h3>Internal Web Service</h3>
+
+        <p>
+            Deployed a web server on Ubuntu to simulate internal applications.
+        </p>
+
+        <ul>
+            <li>Installed Apache/</li>
+            <li>Hosted internal web page</li>
+            <li>Tested access from endpoints</li>
+        </ul>
+
+        <h3 class="image-title">Network Configuration</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">editing Netplan File</p>
+                <img src="images/enterprize services/web server/netplan.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">IP configured</p>
+                <img src="images/enterprize services/web server/ip a.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">Installing Apache</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">Installing Apache2</p>
+                <img src="images/enterprize services/web server/install apache.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Apache2 is installed and active</p>
+                <img src="images/enterprize services/web server/status apache.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">Connecting to the server</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">Connecting to the web server from Windows Client</p>
+                <img src="images/enterprize services/web server/web check.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">logs are collected when client is connecting to the server</p>
+                <img src="images/enterprize services/web server//access log.png">
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

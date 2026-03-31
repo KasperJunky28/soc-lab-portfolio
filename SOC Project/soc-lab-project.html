@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SOC Lab Project</title>
+    <link rel="stylesheet" href="soc-lab-project.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="index.html">🏠 Home</a>
+    <a href="soc-lab-project.html" class="active">Project Overview</a>
+    <a href="network-overview.html">Network Overview</a>
+    <a href="/SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-simulation.html">Attack Simulation</a>
+    <a href="/SOC Project/detection-&-siem.html">Detection & SIEM</a>
+    <a href="/SOC Project/lessons-learned.html">Lessons Learned</a>
+</div>
+
+<div class="main">
+
+<h1>SOC Lab Project</h1>
+
+<!-- PROJECT OVERVIEW -->
+<div class="card">
+    <h2>Project Overview</h2>
+    <p>
+        This project demonstrates the design and implementation of a complete
+        Security Operations Center (SOC) lab environment.
+    </p>
+
+    <p>
+        The lab simulates a real enterprise network including Active Directory,
+        endpoints, SIEM monitoring, IDS, and attacker simulation.
+    </p>
+</div>
+
+<!-- OBJECTIVES -->
+<div class="card">
+    <h2>Objectives</h2>
+    <ul>
+        <li>Build a realistic enterprise network environment</li>
+        <li>Deploy centralized monitoring using SIEM (Wazuh)</li>
+        <li>Implement endpoint and network security tools</li>
+        <li>Simulate attacks and analyze detection capabilities</li>
+        <li>Map detections to MITRE ATT&CK framework</li>
+    </ul>
+</div>
+
+<!-- TECHNOLOGIES -->
+<div class="card">
+    <h2>Technologies Used</h2>
+    <ul>
+        <li>Windows Server (Active Directory, DNS, DHCP)</li>
+        <li>Windows 10 Clients</li>
+        <li>Ubuntu Server (Wazuh SIEM)</li>
+        <li>Suricata IDS</li>
+        <li>Sysmon</li>
+        <li>Kali Linux (Attacker Machine)</li>
+    </ul>
+</div>
+
+<!-- ARCHITECTURE SUMMARY -->
+<div class="card">
+    <h2>Architecture Summary</h2>
+    <p>
+        The environment consists of multiple virtual machines connected through
+        internal and NAT networks, simulating corporate and attacker segments.
+    </p>
+
+    <ul>
+        <li>Domain Controller managing identity and services</li>
+        <li>Client machines generating activity and logs</li>
+        <li>SIEM server collecting and analyzing logs</li>
+        <li>Attacker machine simulating real-world threats</li>
+    </ul>
+</div>
+
+<!-- PROJECT FLOW -->
+<div class="card">
+    <h2>Project Phases</h2>
+
+    <div class="phases">
+
+        <div class="phase">Infrastructure Setup</div>
+        <div class="phase">Identity & Core Services</div>
+        <div class="phase">Enterprise Services</div>
+        <div class="phase">Security Stack</div>
+        <div class="phase">Attack Simulation</div>
+        <div class="phase">Detection & SIEM</div>
+
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
