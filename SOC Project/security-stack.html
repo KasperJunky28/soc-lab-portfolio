@@ -10,15 +10,15 @@
 <div class="sidebar">
     <h2>SOC Lab</h2>
     <a href="../index.html">🏠 Home</a>
-    <a href="../SOC Project/soc-lab-project.html">Project Overview</a>
+    <a href="../SOC Project/project-overview.html">Project Overview</a>
     <a href="../SOC Project/Network-Overview.html">Network Overview</a>
     <a href="../SOC Project/infrastracture.html">Infrastructure</a>
     <a href="../SOC Project/identity-and-services.html">identity and services</a>
     <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
     <a href="/SOC Project/security-stack.html" class="active">Security Stack</a>
-    <a href="/SOC Project/attack-simulation.html">Attack Simulation</a>
-    <a href="/SOC Project/detection-&-siem.html">Detection & SIEM</a>
-    <a href="/SOC Project/lessons-learned.html">Lessons Learned</a>
+    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
+    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
+    <a href="/SOC Project/security-hardening.html">Security Hardening</a>
 </div>
 
 <div class="main">
@@ -63,96 +63,60 @@
     </div>
 </div>
 
-<!-- wazuh server -->
 <div class="card">
-    <h2>Wazuh Server (Ubuntu)</h2>
+    <h2>Tool Integration</h2>
     <div class="step">
-        <p>wazuh server: add here</p>
         <ul>
-            <li>add here</li>
+            <li>Sysmon → Endpoint telemetry</li>
+            <li>Suricata → Network detection</li>
+            <li>Wazuh → SIEM correlation engine</li>
         </ul>
-        <h3 class="image-title">*</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-        </div>
 
-        <h3 class="image-title">*</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-        </div>
-
-        <h3 class="image-title">*</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-        </div>
-
+        <p><strong>Why this matters:</strong><br>
+        Correlating multiple data sources provides better context and reduces false positives.
+        </p>
     </div>
 </div>
 
+<!-- wazuh agent - linux -->
 <div class="card">
     <h2>Wazuh agent (Ubuntu)</h2>
     <div class="step">
-        <p>wazuh server: add here</p>
-        <ul>
-            <li>add here</li>
-        </ul>
-        <h3 class="image-title">*</h3>
+        <p>The Wazuh agent is responsible for collecting logs and telemetry from endpoint machines
+and securely forwarding them to the Wazuh manager for analysis.</p>
+<ul>
+    <li>Installed Wazuh agent on Ubuntu endpoint</li>
+    <li>Configured connection to Wazuh manager (IP, port, protocol)</li>
+    <li>Authenticated the agent with the manager</li>
+    <li>Verified connectivity and agent status</li>
+</ul>
+        <h3 class="image-title">wazuh agent software installation</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">download script</p>
+                <img src="images/security-stack/wazuh agent/linux/download.png">
             </div>
         </div>
 
-        <h3 class="image-title">*</h3>
+        <h3 class="image-title">agent configuration</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">edit the configuration file</p>
+                <img src="images/security-stack/wazuh agent/linux/ossec-conf.png">
             </div>
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">add the wazuh server IP address, port and protocol</p>
+                <img src="images/security-stack/wazuh agent/linux/ossec-address.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">run agent authentication</p>
+                <img src="images/security-stack/wazuh agent/linux/ossec-auth.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">restart the service and check the status</p>
+                <img src="images/security-stack/wazuh agent/linux/agent-restart and status.png">
             </div>
         </div>
-
-        <h3 class="image-title">*</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-            <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
-            </div>
-        </div>
-
     </div>
 </div>
 
@@ -161,16 +125,97 @@
     <h2>Wazuh agent (Windows)</h2>
 
     <div class="step">
-
         <h3 class="image-title">Wazuh agent Installation</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">download agent software</p>
+                <img src="images/security-stack/wazuh agent/win/download agent.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">agent configuration</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">open ossec-agent in program files</p>
+                <img src="images/security-stack/wazuh agent/win/ossec-folder.png">
             </div>
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">open ossec.conf</p>
+                <img src="images/security-stack/wazuh agent/win/ossec-conf.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">add the wazuh server IP address, port and protocol</p>
+                <img src="images/security-stack/wazuh agent/win/ossec-add manager.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">tell the agent to collect events from the system</p>
+                <img src="images/security-stack/wazuh agent/win/ossec-add events.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">run agent authentication</p>
+                <img src="images/security-stack/wazuh agent/win/agent-auth.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">start the wazuh-agent</p>
+                <img src="images/security-stack/wazuh agent/win/start agent.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">check agent status</p>
+                <img src="images/security-stack/wazuh agent/win/agent-running.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- wazuh server -->
+<div class="card">
+    <h2>Wazuh Server (Ubuntu)</h2>
+    <div class="step">
+        <p>The Wazuh server acts as the central SIEM component, responsible for collecting,
+processing, and correlating logs from all connected agents and data sources.</p>
+<ul>
+    <li>Installed Wazuh manager on Ubuntu</li>
+    <li>Configured agent communication and registration</li>
+    <li>Integrated Suricata logs into Wazuh</li>
+    <li>Verified log ingestion and alert generation</li>
+</ul>
+        <h3 class="image-title">wazuh manager software installation</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">download script</p>
+                <img src="images/security-stack/wazuh manager/download script.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">check status</p>
+                <img src="images/security-stack/wazuh manager/manager status.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">browser access</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">access wazuh app in the browser with IP address - 192.168.59.40</p>
+                <img src="images/security-stack/wazuh manager/open in browser.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">Manager configuration</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">list all registered agents</p>
+                <img src="images/security-stack/wazuh manager/list of agents.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">open configuration file</p>
+                <img src="images/security-stack/wazuh manager/ossec conf.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">tell wazuh to collect json logs from Suricata</p>
+                <img src="images/security-stack/wazuh manager/add suricata logs in ossec conf.png">
+            </div>
+                <div class="image-card">
+                <p class="image-title">restart the Wazuh service</p>
+                <img src="images/security-stack/wazuh manager/restart wazuh.png">
             </div>
         </div>
     </div>
@@ -180,48 +225,139 @@
 <div class="card">
     <h2>Sysmon (Windows)</h2>
     <div class="step">
-        <p>Sysmon is installed on Windows clients and servers for detailed endpoint telemetry.</p>
+        <p>Sysmon is a Windows system service that provides detailed visibility into system activity,
+including process creation, network connections, and file modifications.</p>
         <ul>
             <li>Servers: DC01, FILE01</li>
             <li>Clients: IT01, HR01</li>
             <li>The installation procces is the same on all machines</li>
         </ul>
-        <h3 class="image-title">Sysmon agent Installation</h3>
+        <h3 class="image-title">Sysmon Installation</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">download sysmon files</p>
+                <img src="images/security-stack/sysmon/download sysmon.png">
             </div>
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">create a sysmon file in C: and add the following files</p>
+                <img src="images/security-stack/sysmon/download sysmon - 2.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">install sysmon with the command</p>
+                <img src="images/security-stack/sysmon/download sysmon - 3.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">check status</p>
+                <img src="images/security-stack/sysmon/sysmon is installed.png">
             </div>
         </div>
 
         <h3 class="image-title">Sysmon agent Log Collection</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">open sysmon event logger in Event Viewer: Application and services logs -> Microsoft -> Windows -> Sysmon</p>
+                <img src="images/security-stack/sysmon/sysmon in event viewer.png">
             </div>
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">Create a system event with command: notepad.exe</p>
+                <img src="images/security-stack/sysmon/create event.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">see that an event was logged from sysmon</p>
+                <img src="images/security-stack/sysmon/event is created.png">
             </div>
         </div>
 
         <h3 class="image-title">Connecting Sysmon to Wazuh</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">in ossec.conf (wazuh configuration file) add sysmon events</p>
+                <img src="images/security-stack/sysmon/connect to wazuh agent.png">
             </div>
             <div class="image-card">
-                <p class="image-title">*</p>
-                <img src="images/">
+                <p class="image-title">test - create a local event</p>
+                <img src="images/security-stack/sysmon/test - 1.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">the event appears in wazuh events</p>
+                <img src="images/security-stack/sysmon/test - 2.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- suricata -->
+<div class="card">
+    <h2>Suricata IDS</h2>
+    <div class="step">
+        <p>Suricata is a network-based intrusion detection system (IDS) used to monitor traffic
+            and detect malicious patterns such as scans, exploits, and suspicious connections.</p>
+        <ul>
+            <li>Installed Suricata on the monitoring server</li>
+            <li>Configured network interface for traffic inspection</li>
+            <li>Installed and updated detection rules</li>
+            <li>Created custom detection rule for Nmap scan activity</li>
+            <li>Mapped detection to MITRE ATT&CK technique</li>
+        </ul>
+        <h3 class="image-title">suricata Installation</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">install Suricata software</p>
+                <img src="images/security-stack/suricata/download suricata.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">check status</p>
+                <img src="images/security-stack/suricata/suricata status.png">
             </div>
         </div>
 
+        <h3 class="image-title">suricata configuration</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">open Suricata Configuration File</p>
+                <img src="images/security-stack/suricata/config page.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">set the network interface</p>
+                <img src="images/security-stack/suricata/set interface.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">install detection rules for Suricata</p>
+                <img src="images/security-stack/suricata/update rules.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">check that rules files wew created in the Suricata rules folder</p>
+                <img src="images/security-stack/suricata/check rules.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">in suricata.yaml file set the rules files and directory</p>
+                <img src="images/security-stack/suricata/connect rules files suricata yaml.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">restart the suricata service</p>
+                <img src="images/security-stack/suricata/restart.png">
+            </div>
+        </div>
+
+        <h3 class="image-title">suricata custom Detection Rules</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">open local.rules file</p>
+                <img src="images/security-stack/suricata/open local rules file.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">create a custom alert rule for detecting Nmap scans</p>
+                <img src="images/security-stack/suricata/create custom alert.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">open local_rules.xml file</p>
+                <img src="images/security-stack/suricata/mitre rule file.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">create a custom Wazuh rule that maps the Nmap scan detection to MITRE ATT&CK technique T1046 (Network Service Discovery)</p>
+                <img src="images/security-stack/suricata/mitre rule.png">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -231,17 +367,18 @@
 
     <div class="step">
         <p>
-            Endpoint logs are generated by Sysmon and Windows logging mechanisms.
-            These logs are collected by Wazuh agents and forwarded to the SIEM.
+        Logs are generated from endpoints (Sysmon, Windows Event Logs)
+        and network sensors (Suricata).
         </p>
 
         <p>
-            Suricata monitors network traffic and generates alerts based on suspicious patterns.
+        Wazuh agents collect and forward logs to the Wazuh manager,
+        where events are analyzed and correlated.
         </p>
 
         <p>
-            All data is centralized in Wazuh where detection rules trigger alerts
-            and security events are analyzed.
+        Detection rules trigger alerts, which are mapped to MITRE ATT&CK techniques
+        and visualized in the SIEM dashboard.
         </p>
     </div>
 </div>
@@ -252,11 +389,11 @@
 
     <div class="step">
         <ul>
-            <li>Brute-force login attempts</li>
-            <li>Suspicious process execution</li>
-            <li>Network scanning activity</li>
+            <li>Brute-force login attempts (Event ID 4625)</li>
+            <li>Suspicious process execution (Sysmon Event)</li>
+            <li>Network scanning activity (Nmap detection via Suricata)</li>
             <li>Privilege escalation behavior</li>
-            <li>Known attack signatures (Suricata)</li>
+            <li>MITRE ATT&CK mapped detections</li>
         </ul>
     </div>
 </div>

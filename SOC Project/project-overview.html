@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SOC Lab Project</title>
+    <link rel="stylesheet" href="project-overview.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="index.html">🏠 Home</a>
+    <a href="project-overview.html" class="active">Project Overview</a>
+    <a href="network-overview.html">Network Overview</a>
+    <a href="/SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
+    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
+    <a href="/SOC Project/security-hardening.html">Security Hardening</a>
+</div>
+
+<div class="main">
+
+    <h1>SOC Lab Project</h1>
+
+    <!-- PROJECT OVERVIEW -->
+    <div class="card">
+        <h2>Project Overview</h2>
+        <p>
+        This project demonstrates the design, implementation, and security analysis of a full
+        Security Operations Center (SOC) lab environment.
+        </p>
+
+        <p>
+        The lab simulates a real-world enterprise network and focuses on the complete attack lifecycle —
+        from external reconnaissance to internal compromise and data exfiltration —
+        as well as detection, analysis, and security improvement.
+        </p>
+
+        <p>
+        The project emphasizes both offensive simulation and defensive analysis,
+        highlighting detection capabilities, visibility gaps, and practical security hardening.
+        </p>
+    </div>
+
+    <!-- OBJECTIVES -->
+    <div class="card">
+        <h2>Objectives</h2>
+        <ul>
+            <li>Design and deploy a realistic enterprise network environment</li>
+            <li>Implement centralized monitoring and detection using Wazuh SIEM</li>
+            <li>Simulate real-world attack scenarios (external and internal)</li>
+            <li>Analyze detection coverage and identify security gaps</li>
+            <li>Map attack techniques to the MITRE ATT&CK framework</li>
+            <li>Implement security hardening based on identified weaknesses</li>
+        </ul>
+    </div>
+
+    <!-- TECHNOLOGIES -->
+    <div class="card">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Windows Server (Active Directory, DNS, DHCP)</li>
+            <li>Windows 10 Clients</li>
+            <li>Apache Web Server</li>
+            <li>SMB / Windows File Server</li>
+            <li>Ubuntu Server (Wazuh SIEM)</li>
+            <li>Suricata IDS</li>
+            <li>Sysmon</li>
+            <li>Kali Linux (Attacker Machine)</li>
+        </ul>
+    </div>
+
+    <!-- ARCHITECTURE SUMMARY -->
+    <div class="card">
+        <h2>Architecture Summary</h2>
+        <p>
+        The lab environment is composed of multiple interconnected virtual machines,
+        segmented to simulate both internal enterprise infrastructure and external attacker access.
+        </p>
+
+        <ul>
+            <li>Domain Controller (Active Directory, DNS, DHCP)</li>
+            <li>File Server with shared resources and permission structures</li>
+            <li>Web Server hosting internal applications</li>
+            <li>SIEM Server (Wazuh) for centralized logging and detection</li>
+            <li>Suricata IDS for network-level monitoring</li>
+            <li>Windows endpoints generating user activity</li>
+            <li>Kali Linux attacker machine simulating external threats</li>
+        </ul>
+    </div>
+
+    <!-- PROJECT FLOW -->
+    <div class="card">
+        <h2>Project Phases</h2>
+
+        <div class="phases">
+            <div class="phase">Infrastructure Setup</div>
+            <div class="phase">Identity & Core Services</div>
+            <div class="phase">Enterprise Services</div>
+            <div class="phase">Security Stack</div>
+            <div class="phase">External Attack Simulation</div>
+            <div class="phase">Internal Attack Simulation</div>
+            <div class="phase">Detection & SIEM Analysis</div>
+            <div class="phase">Security Hardening</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Key Skills Demonstrated</h2>
+        <ul>
+            <li>SIEM Monitoring & Log Analysis (Wazuh)</li>
+            <li>Network Traffic Analysis (Suricata IDS)</li>
+            <li>Attack Simulation & Adversary Emulation</li>
+            <li>Detection Engineering & Rule Creation</li>
+            <li>MITRE ATT&CK Mapping</li>
+            <li>Security Gap Analysis</li>
+            <li>Incident Investigation & Reporting</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

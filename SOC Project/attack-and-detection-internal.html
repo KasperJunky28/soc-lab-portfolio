@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attack & Detection - Internal</title>
+    <link rel="stylesheet" href="/SOC Project/attack-and-detection.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="/index.html">🏠 Home</a>
+    <a href="../SOC Project/project-overview.html">Project Overview</a>
+    <a href="/SOC Project/Network-Overview.html">Network Overview</a>
+    <a href="/SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
+    <a href="/SOC Project/attack-and-detection-internal.html" class="active">Attack & Detection - Internal attacks</a>
+    <a href="/SOC Project/security-hardening.html">Security Hardening</a>
+</div>
+
+<div class="main">
+
+<h1>Internal Attacks</h1>
+
+<!-- Overview -->
+<div class="card">
+    <h2>Overview</h2>
+    <div class="step">
+        <p>
+        Following successful initial access via SSH brute-force attack on the SIEM server,
+        post-compromise activities were performed to simulate attacker behavior within the internal network.
+        </p>
+
+        <ul>
+            <li>Credential discovery</li>
+            <li>Lateral movement using SMB</li>
+            <li>Access to sensitive data</li>
+            <li>Data exfiltration</li>
+        </ul>
+
+        <p>
+        This phase demonstrates how an attacker can move from initial access to full data compromise.
+        </p>
+    </div>
+</div>
+
+<!-- Attack Chain -->
+<div class="card">
+    <h2>Attack Chain</h2>
+    <div class="step">
+        <ul>
+            <li>Initial Access (SSH)</li>
+            <li>Credential Discovery</li>
+            <li>SMB Enumeration</li>
+            <li>Lateral Movement</li>
+            <li>Data Access</li>
+            <li>Exfiltration</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Credential Discovery -->
+<div class="card">
+    <h2>Credential Discovery (SIEM)</h2>
+    <div class="step">
+
+        <h3>Description</h3>
+        <p>
+        After gaining access to the SIEM server, the attacker searched for sensitive information stored locally.
+        </p>
+
+        <h3>Execution</h3>
+        <ul>
+            <li>Command used: ls -la</li>
+            <li>Hidden file discovered: .backup.txt</li>
+            <li>Command used: cat .backup.txt</li>
+        </ul>
+
+        <h3>Command Breakdown</h3>
+        <ul>
+            <li><strong>ls:</strong> Lists visible files in the current directory.</li>
+            <li><strong>ls -la:</strong> Lists all files, including hidden files (starting with '.').</li>
+        </ul>
+
+        <h3 class="image-title">Evidence</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">Connecting to SIEM01 CLI using SSH</p>
+                <img src="images/attack and detection/credential discovery/shh to siemadmin.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">Hidden credentials file discovered</p>
+                <img src="images//attack and detection/credential discovery/discover backup.txt.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">Credentials inside backup file</p>
+                <img src="images/attack and detection/credential discovery/open backup.txt.png">
+            </div>
+        </div>
+
+        <h3>Execution Findings</h3>
+        <ul>
+            <li>Hidden file (.backup.txt) identified</li>
+            <li>Plaintext credentials successfully extracted</li>
+        </ul>
+
+        <h3>Result</h3>
+        <ul>
+            <li>Credentials discovered: <span class="success">✔</span></li>
+            <li>Access to sensitive data: <span class="success">✔</span></li>
+        </ul>
+
+        <h3>MITRE ATT&CK</h3>
+        <ul>
+            <li>T1552 – Unsecured Credentials</li>
+        </ul>
+
+        <p><strong>Analysis:</strong><br>
+        Plaintext credentials were discovered in a hidden file, representing poor credential management and insecure storage practices.
+        </p>
+
+    </div>
+</div>
+
+<!-- SMB Enumeration -->
+<div class="card">
+    <h2>SMB Enumeration + Lateral Movement (SMB Access)</h2>
+    <div class="step">
+
+        <h3>Description</h3>
+        <p>
+        Using the discovered credentials, the attacker enumerated SMB shares
+        and attempted to access internal resources on the file server.
+        </p>
+
+        <h3>Execution</h3>
+        <ul>
+            <li>Command used: smbclient -L //file01 -U corp\\testuser</li>
+            <li>Command used: smbclient //file01/Management -U corp\\testuser</li>
+            <li>Attempted access to Finance and HR (Denied)</li>
+            <li>Successful access to Management share</li>
+        </ul>
+
+        <h3>Command Breakdown</h3>
+        <ul>
+            <li><strong>smbclient:</strong> A tool used to interact with SMB (Windows file sharing).</li>
+            <li><strong>-L:</strong> Lists all available shared resources on the target system.</li>
+            <li><strong>//file01:</strong> Target file server.</li>
+            <li><strong>-U corp\\testuser:</strong> Authenticates using domain credentials.</li>
+            <li><strong>smbclient //file01/Management:</strong> Connects to a specific shared folder.</li>
+        </ul>
+
+        <h3 class="image-title">Execution Evidence</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">SMB shares enumeration</p>
+                <img src="images/attack and detection/credential discovery/connect to file server with smbclient and user.png">
+            </div>
+        </div>
+        <h3></h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">Access denied (Finance/HR)</p>
+                <img src="images/attack and detection/credential discovery/trying to connect to finance and hr - failed.png">
+            </div>
+            <div class="image-card">
+                <p class="image-title">Access granted (Management)</p>
+                <img src="images/attack and detection/credential discovery/trying to connect to Management - success.png">
+            </div>
+        </div>
+        <h3>Execution Findings</h3>
+        <ul>
+            <li>Multiple shares identified (HR, Finance, Management)</li>
+            <li>Access denied to restricted shares (HR, Finance)</li>
+            <li>Access granted to Management share</li>
+        </ul>
+
+        <h3>Result</h3>
+        <ul>
+            <li>Shares enumerated: <span class="success">✔</span></li>
+            <li>Lateral movement achieved: <span class="success">✔</span></li>
+            <li>Unauthorized access to Management share: <span class="success">✔</span></li>
+        </ul>
+
+        <h3>MITRE ATT&CK</h3>
+        <ul>
+            <li>T1021.002 – SMB</li>
+            <li>T1078 – Valid Accounts</li>
+        </ul>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Data Access & Exfiltration</h2>
+
+    <div class="step">
+
+        <h3>Description</h3>
+        <p>
+        After successfully accessing the Management share, the attacker identified and retrieved sensitive data.
+        The file was then transferred to an external system for further analysis, completing the data exfiltration phase.
+        </p>
+
+        <!-- Execution -->
+        <h3>Execution</h3>
+        <ul>
+            <li>Command used: ls</li>
+            <li>Command used: get management_confidential_report.pdf</li>
+            <li>Command used: scp transfer to attacker machine</li>
+        </ul>
+
+        <!-- Command Breakdown -->
+        <h3>Command Breakdown</h3>
+        <ul>
+            <li><strong>ls:</strong> Lists files within the shared directory.</li>
+            <li><strong>get management_confidential_report.pdf:</strong> Downloads the file from the remote SMB share.</li>
+            <li><strong>scp:</strong> Transfers the file from the compromised system to the attacker machine.</li>
+        </ul>
+
+        <!-- Evidence -->
+        <h3 class="image-title">Execution Evidence</h3>
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">Sensitive file identified and downloaded</p>
+                <img src="images/attack and detection/credential discovery/get confedential file.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">File transferred to attacker machine</p>
+                <img src="images/attack and detection/credential discovery/get document in kali.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Extracted file content</p>
+                <img src="images/attack and detection/credential discovery/read document in kali.png">
+            </div>
+        </div>
+
+        <h3>Execution Findings</h3>
+        <ul>
+            <li>Sensitive management file identified</li>
+            <li>File successfully downloaded from SMB share</li>
+            <li>File transferred to external attacker machine</li>
+        </ul>
+
+        <h3>Result</h3>
+        <ul>
+            <li>Sensitive data accessed: <span class="success">✔</span></li>
+            <li>Data exfiltration completed: <span class="success">✔</span></li>
+            <li>Detected: <span class="fail">❌ (No file-level detection)</span></li>
+        </ul>
+
+        <!-- MITRE -->
+        <h3>MITRE ATT&CK</h3>
+        <ul>
+            <li>T1039 – Data from Network Share</li>
+            <li>T1041 – Exfiltration Over Command Channel</li>
+        </ul>
+
+        <!-- Analysis -->
+        <p><strong>Analysis:</strong><br>
+        The attacker successfully accessed and exfiltrated sensitive management-level data due to overly permissive access controls.
+        </p>
+    </div>
+</div>
+
+<!-- Detection -->
+<div class="card">
+    <h2>Detection & Visibility</h2>
+    <div class="step">
+
+        <h3>Detection Evidence</h3>
+
+        <div class="VM-network-images">
+            <div class="image-card">
+                <p class="image-title">SIEM detected SMB authentication</p>
+                <img src="images/attack and detection/credential discovery/siem - detects connection from siem to file01.png">
+            </div>
+        </div>
+
+        <p>
+        The SIEM detected successful authentication between the SIEM server and the file server.
+        </p>
+
+        <h3>Detection Gap</h3>
+
+        <ul>
+            <li>No detection of file access</li>
+            <li>No alert on sensitive file retrieval</li>
+            <li>No correlation of SMB activity to data exfiltration</li>
+        </ul>
+
+        <p><strong>Analysis:</strong><br>
+        While authentication activity was detected, no alerts were generated for file access or data exfiltration.
+        This represents a critical visibility gap where attackers can access sensitive data without detection.
+        </p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Attack Outcome & Detection Summary</h2>
+
+    <div class="step">
+
+        <h3>Attack Result Summary</h3>
+        <ul>
+            <li>Initial access (SSH): <span class="success">✔</span></li>
+            <li>Credential discovery: <span class="success">✔</span></li>
+            <li>Lateral movement (SMB): <span class="success">✔</span></li>
+            <li>Access to restricted shares: <span class="success">Partial (Management only)</span></li>
+            <li>Sensitive data accessed: <span class="success">✔</span></li>
+            <li>Data exfiltration: <span class="success">✔</span></li>
+        </ul>
+
+        <h3>Detection Summary</h3>
+        <ul>
+            <li>Authentication activity detected: <span class="success">✔</span></li>
+            <li>SMB access detected: <span class="success">✔</span></li>
+            <li>File access detected: <span class="fail">❌</span></li>
+            <li>Data exfiltration detected: <span class="fail">❌</span></li>
+        </ul>
+
+        <p><strong>Conclusion:</strong><br>
+        The attacker successfully compromised internal systems, accessed sensitive data,
+        and exfiltrated it without triggering alerts for data access or data transfer activities.
+        </p>
+
+    </div>
+</div>
+
+</div>
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script src="../script.js"></script>
+
+</body>
+</html>

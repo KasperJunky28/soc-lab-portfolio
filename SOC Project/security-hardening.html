@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Hardening</title>
+    <link rel="stylesheet" href="security-hardening.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="../index.html">🏠 Home</a>
+    <a href="../SOC Project/project-overview.html">Project Overview</a>
+    <a href="../SOC Project/Network-Overview.html">Network Overview</a>
+    <a href="../SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="../SOC Project/identity-and-services.html">Identity and Services</a>
+    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
+    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
+    <a href="/SOC Project/security-hardening.html" class="active">Security Hardening</a>
+</div>
+
+<div class="main">
+
+<h1>Security Hardening</h1>
+
+<!-- ===================== -->
+<!-- SUMMARY -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Security Assessment Summary</h2>
+
+    <div class="step">
+
+        <h3>Overview</h3>
+        <ul>
+            <li>The simulated attack demonstrated a full compromise of the environment, from initial access to data exfiltration, due to weaknesses in authentication, access control, and monitoring.</li>
+            <li>The following section focuses on implementing security controls to address these weaknesses and improve overall detection and prevention capabilities.</li>
+        </ul>
+
+        <h3>Key Weaknesses</h3>
+        <ul>
+            <li>No prevention mechanisms for network reconnaissance (Nmap scans)</li>
+            <li>Weak authentication controls and lack of account lockout policy</li>
+            <li>No detection or mitigation of HTTP flood (DoS) activity</li>
+            <li>Plaintext credentials stored on compromised systems</li>
+            <li>Overly permissive access to sensitive file shares</li>
+            <li>Exposed critical services and lack of network segmentation</li>
+            <li>Limited detection beyond authentication events</li>
+        </ul>
+
+        <h3>Detection Gaps</h3>
+        <ul>
+            <li>File access and data retrieval not monitored</li>
+            <li>No detection of data exfiltration</li>
+            <li>No correlation between authentication events and subsequent user activity</li>
+        </ul>
+
+        <h3>Impact</h3>
+        <ul>
+            <li>Unauthorized access to internal systems</li>
+            <li>Exposure of sensitive management data</li>
+            <li>Credential compromise and reuse</li>
+        </ul>
+
+        <p><strong>Conclusion:</strong><br>
+        The environment lacked layered security controls, allowing attackers to move laterally
+        and access sensitive data without detection.
+        </p>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- IMPLEMENTATION PLACEHOLDER -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Security Improvements (Implementation)</h2>
+
+    <div class="step">
+
+        <p>
+        The following section demonstrates the implementation of security controls
+        to mitigate the identified weaknesses and improve detection capabilities.
+        </p>
+
+        <ul>
+            <li>Network Hardening & Intrusion Prevention</li>
+            <li>Data Protection & Access Control</li>
+            <li>Authentication Hardening</li>
+            <li>Privilege & Permission Management</li>
+            <li>Detection & SIEM Enhancements</li>
+        </ul>
+
+        <p>
+        Each improvement includes configuration steps, validation, and impact analysis.
+        </p>
+
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>
