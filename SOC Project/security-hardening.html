@@ -80,28 +80,146 @@
 <div class="card">
     <h2>Security Improvements (Implementation)</h2>
 
-    <div class="step">
+    <!-- ===================== -->
+    <!-- PHASE 1: IDENTITY -->
+    <!-- ===================== -->
 
-        <p>
-        The following section demonstrates the implementation of security controls
-        to mitigate the identified weaknesses and improve detection capabilities.
-        </p>
+    <div class="card">
+        <h2>1. Identity & Authentication Hardening</h2>
 
-        <ul>
-            <li>Network Hardening & Intrusion Prevention</li>
-            <li>Data Protection & Access Control</li>
-            <li>Authentication Hardening</li>
-            <li>Privilege & Permission Management</li>
-            <li>Detection & SIEM Enhancements</li>
-        </ul>
+        <div class="step">
 
-        <p>
-        Each improvement includes configuration steps, validation, and impact analysis.
-        </p>
+            <h3>Overview</h3>
+            <p>
+            During the attack phase, weak authentication controls allowed unauthorized access
+            through brute-force techniques and exposed user accounts to compromise.
+            </p>
 
+            <p>
+            This phase focuses on strengthening identity security by enforcing password policies,
+            account lockout mechanisms, and secure user configurations.
+            </p>
+
+            <h3>Key Improvements</h3>
+            <ul>
+                <li>Strong password policy enforcement</li>
+                <li>Account lockout mechanism</li>
+                <li>User account security improvements</li>
+            </ul>
+
+        </div>
     </div>
-</div>
 
+
+    <!-- Password Policy -->
+    <div class="card">
+        <h2>Password Policy Enforcement</h2>
+
+        <div class="step">
+
+            <h3>Description</h3>
+            <p>
+            Weak and predictable passwords were identified as a critical vulnerability.
+            A domain-level password policy was configured to enforce complexity and improve resistance to brute-force attacks.
+            </p>
+
+            <h3>Implementation</h3>
+            <ul>
+                <li>Enabled password complexity requirements</li>
+                <li>Configured minimum password length</li>
+                <li>Enforced password expiration</li>
+            </ul>
+
+            <h3 class="image-title">Configuration Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Password policy configuration</p>
+                    <img src="images/security hardening/01-identity-authentication/password-policy/password-policy.png">
+                </div>
+            </div>
+
+            <h3>Result</h3>
+            <ul>
+                <li>Weak passwords eliminated: <span class="success">✔</span></li>
+                <li>Improved resistance to brute-force attacks: <span class="success">✔</span></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- Lockout Policy -->
+    <div class="card">
+        <h2>Account Lockout Policy</h2>
+
+        <div class="step">
+
+            <h3>Description</h3>
+            <p>
+            No account lockout mechanism was in place, allowing unlimited login attempts.
+            This enabled brute-force attacks to succeed without restriction.
+            </p>
+
+            <h3>Implementation</h3>
+            <ul>
+                <li>Configured account lockout threshold</li>
+                <li>Defined lockout duration</li>
+                <li>Monitored failed login attempts</li>
+            </ul>
+
+            <h3 class="image-title">Configuration Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Account lockout policy settings</p>
+                    <img src="images/security hardening/01-identity-authentication/password-policy/lockout-policy.png">
+                </div>
+            </div>
+
+            <h3>Result</h3>
+            <ul>
+                <li>Brute-force attempts limited: <span class="success">✔</span></li>
+                <li>Unauthorized login attempts reduced: <span class="success">✔</span></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- User Hardening -->
+    <div class="card">
+        <h2>User Account Hardening</h2>
+
+        <div class="step">
+
+            <h3>Description</h3>
+            <p>
+            Existing user accounts were reviewed and updated to eliminate insecure configurations
+            and enforce better credential hygiene.
+            </p>
+
+            <h3>Implementation</h3>
+            <ul>
+                <li>Enabled "User must change password at next logon"</li>
+                <li>Reviewed existing user configurations</li>
+                <li>Removed insecure account settings</li>
+            </ul>
+
+            <h3 class="image-title">Configuration Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">User account security settings</p>
+                    <img src="images/security hardening/01-identity-authentication/account-security/user-properties.png">
+                </div>
+            </div>
+
+            <h3>Result</h3>
+            <ul>
+                <li>Improved account security posture: <span class="success">✔</span></li>
+                <li>Reduced risk of credential compromise: <span class="success">✔</span></li>
+            </ul>
+
+        </div>
+    </div>
 </div>
 
 </body>
