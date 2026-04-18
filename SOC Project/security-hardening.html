@@ -13,7 +13,7 @@
     <a href="../SOC Project/project-overview.html">Project Overview</a>
     <a href="../SOC Project/Network-Overview.html">Network Overview</a>
     <a href="../SOC Project/infrastracture.html">Infrastructure</a>
-    <a href="../SOC Project/identity-and-services.html">Identity and Services</a>
+    <a href="../SOC Project/identity-and-services.html">Identity & Services</a>
     <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
     <a href="/SOC Project/security-stack.html">Security Stack</a>
     <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
@@ -34,193 +34,873 @@
 
     <div class="step">
 
-        <h3>Overview</h3>
-        <ul>
-            <li>The simulated attack demonstrated a full compromise of the environment, from initial access to data exfiltration, due to weaknesses in authentication, access control, and monitoring.</li>
-            <li>The following section focuses on implementing security controls to address these weaknesses and improve overall detection and prevention capabilities.</li>
-        </ul>
+        <p>
+        The attack simulation demonstrated a full compromise of the lab environment,
+        progressing from initial access to data exfiltration due to multiple security weaknesses
+        across authentication, access control, and monitoring layers.
+        </p>
 
-        <h3>Key Weaknesses</h3>
+        <h3>Key Security Gaps Identified</h3>
         <ul>
-            <li>No prevention mechanisms for network reconnaissance (Nmap scans)</li>
-            <li>Weak authentication controls and lack of account lockout policy</li>
-            <li>No detection or mitigation of HTTP flood (DoS) activity</li>
-            <li>Plaintext credentials stored on compromised systems</li>
+            <li>No account lockout or protection against brute-force attacks</li>
+            <li>Weak password policies enabling credential compromise</li>
             <li>Overly permissive access to sensitive file shares</li>
-            <li>Exposed critical services and lack of network segmentation</li>
-            <li>Limited detection beyond authentication events</li>
-        </ul>
-
-        <h3>Detection Gaps</h3>
-        <ul>
-            <li>File access and data retrieval not monitored</li>
-            <li>No detection of data exfiltration</li>
-            <li>No correlation between authentication events and subsequent user activity</li>
+            <li>No monitoring of file access or data exfiltration</li>
+            <li>Lack of correlation between authentication and user activity</li>
+            <li>No active prevention mechanisms (rate limiting / blocking)</li>
         </ul>
 
         <h3>Impact</h3>
         <ul>
             <li>Unauthorized access to internal systems</li>
-            <li>Exposure of sensitive management data</li>
-            <li>Credential compromise and reuse</li>
+            <li>Lateral movement across the network</li>
+            <li>Exposure and exfiltration of sensitive data</li>
         </ul>
 
         <p><strong>Conclusion:</strong><br>
-        The environment lacked layered security controls, allowing attackers to move laterally
-        and access sensitive data without detection.
+        The environment lacked layered security controls, allowing attackers to move freely
+        within the network without being blocked or fully detected.
+        </p>
+
+        <p>
+        The following sections focus on implementing security controls to eliminate these weaknesses,
+        improve detection visibility, and introduce prevention mechanisms.
         </p>
 
     </div>
 </div>
 
-<!-- ===================== -->
-<!-- IMPLEMENTATION PLACEHOLDER -->
-<!-- ===================== -->
-
 <div class="card">
-    <h2>Security Improvements (Implementation)</h2>
+    <h2>1. Identity & Authentication Hardening</h2>
 
-    <!-- ===================== -->
-    <!-- PHASE 1: IDENTITY -->
-    <!-- ===================== -->
+    <!-- OVERVIEW -->
+    <div class="step">
+        <h3>Overview</h3>
 
-    <div class="card">
-        <h2>1. Identity & Authentication Hardening</h2>
+        <p>
+        During the attack phase, weak authentication controls allowed successful brute-force attacks
+        and unauthorized access to critical systems.
+        </p>
 
-        <div class="step">
-
-            <h3>Overview</h3>
-            <p>
-            During the attack phase, weak authentication controls allowed unauthorized access
-            through brute-force techniques and exposed user accounts to compromise.
-            </p>
-
-            <p>
-            This phase focuses on strengthening identity security by enforcing password policies,
-            account lockout mechanisms, and secure user configurations.
-            </p>
-
-            <h3>Key Improvements</h3>
-            <ul>
-                <li>Strong password policy enforcement</li>
-                <li>Account lockout mechanism</li>
-                <li>User account security improvements</li>
-            </ul>
-
-        </div>
+        <p>
+        This phase focuses on strengthening authentication mechanisms to prevent unauthorized access
+        and reduce the risk of credential compromise.
+        </p>
     </div>
 
+    <!-- PASSWORD POLICY -->
+    <div class="step">
+        <h3>Password Policy Enforcement</h3>
 
-    <!-- Password Policy -->
-    <div class="card">
-        <h2>Password Policy Enforcement</h2>
+        <h4>Problem</h4>
+        <p>
+        Weak and predictable passwords allowed attackers to successfully authenticate
+        using brute-force techniques.
+        </p>
 
-        <div class="step">
+        <h4>Risk</h4>
+        <ul>
+            <li>Unauthorized access to domain accounts</li>
+            <li>Increased likelihood of credential compromise</li>
+        </ul>
 
-            <h3>Description</h3>
-            <p>
-            Weak and predictable passwords were identified as a critical vulnerability.
-            A domain-level password policy was configured to enforce complexity and improve resistance to brute-force attacks.
-            </p>
+        <h4>Implementation</h4>
+        <ul>
+            <li>Configured domain password policy via Group Policy Management</li>
+            <li>Enabled password complexity requirements</li>
+            <li>Defined minimum password length</li>
+            <li>Configured password history and expiration</li>
+        </ul>
 
-            <h3>Implementation</h3>
-            <ul>
-                <li>Enabled password complexity requirements</li>
-                <li>Configured minimum password length</li>
-                <li>Enforced password expiration</li>
-            </ul>
+        <h4 class="image-title">Configuration Steps</h4>
 
-            <h3 class="image-title">Configuration Evidence</h3>
-            <div class="VM-network-images">
-                <div class="image-card">
-                    <p class="image-title">Password policy configuration</p>
-                    <img src="images/security hardening/01-identity-authentication/password-policy/password-policy.png">
-                </div>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Open Group Policy Management</p>
+                <img src="images/security hardening/identity-authentication/password policy/open group policy management.png">
             </div>
 
-            <h3>Result</h3>
-            <ul>
-                <li>Weak passwords eliminated: <span class="success">✔</span></li>
-                <li>Improved resistance to brute-force attacks: <span class="success">✔</span></li>
-            </ul>
+            <div class="image-card">
+                <p class="image-title">Edit Default Domain Policy</p>
+                <img src="images/security hardening/identity-authentication/password policy/edit default domain policy.png">
+            </div>
 
+            <div class="image-card">
+                <p class="image-title">Navigate to Password Policy Settings</p>
+                <img src="images/security hardening/identity-authentication/password policy/go to password policy.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Configure Minimum Password Length</p>
+                <img src="images/security hardening/identity-authentication/password policy/configure minimum length.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Enable Password Complexity</p>
+                <img src="images/security hardening/identity-authentication/password policy/password complexity enabled.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Configure Maximum Password Age</p>
+                <img src="images/security hardening/identity-authentication/password policy/max password age.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Configure Password History</p>
+                <img src="images/security hardening/identity-authentication/password policy/password history.png">
+            </div>
         </div>
+
+        <h4>Result</h4>
+        <ul>
+            <li>Weak passwords eliminated: <span class="success">✔</span></li>
+            <li>Improved resistance to brute-force attacks: <span class="success">✔</span></li>
+        </ul>
     </div>
 
+    <!-- LOCKOUT POLICY -->
+    <div class="step">
+        <h3>Account Lockout Policy</h3>
 
-    <!-- Lockout Policy -->
-    <div class="card">
-        <h2>Account Lockout Policy</h2>
+        <h4>Problem</h4>
+        <p>
+        Unlimited login attempts allowed brute-force attacks to continue until valid credentials were found.
+        This enabled attackers to repeatedly attempt authentication without restriction.
+        </p>
 
-        <div class="step">
+        <h4>Risk</h4>
+        <ul>
+            <li>High risk of account compromise</li>
+            <li>No protection against automated brute-force attacks</li>
+            <li>Attackers can continuously attempt authentication until success</li>
+        </ul>
 
-            <h3>Description</h3>
-            <p>
-            No account lockout mechanism was in place, allowing unlimited login attempts.
-            This enabled brute-force attacks to succeed without restriction.
-            </p>
+        <h4>Implementation</h4>
+        <ul>
+            <li>Configured account lockout threshold (failed login attempts limit)</li>
+            <li>Defined account lockout duration</li>
+            <li>Configured reset counter timing</li>
+            <li>Applied settings via Group Policy (Domain level)</li>
+        </ul>
 
-            <h3>Implementation</h3>
-            <ul>
-                <li>Configured account lockout threshold</li>
-                <li>Defined lockout duration</li>
-                <li>Monitored failed login attempts</li>
-            </ul>
+        <h4 class="image-title">Configuration Steps</h4>
 
-            <h3 class="image-title">Configuration Evidence</h3>
-            <div class="VM-network-images">
-                <div class="image-card">
-                    <p class="image-title">Account lockout policy settings</p>
-                    <img src="images/security hardening/01-identity-authentication/password-policy/lockout-policy.png">
-                </div>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Navigate to Account Lockout Policy Settings</p>
+                <img src="images/security hardening/identity-authentication/lockout policy/go to lockout policy.png">
             </div>
 
-            <h3>Result</h3>
-            <ul>
-                <li>Brute-force attempts limited: <span class="success">✔</span></li>
-                <li>Unauthorized login attempts reduced: <span class="success">✔</span></li>
-            </ul>
+            <div class="image-card">
+                <p class="image-title">Configure Lockout Threshold</p>
+                <img src="images/security hardening/identity-authentication/lockout policy/lockout threshold.png">
+            </div>
 
+            <div class="image-card">
+                <p class="image-title">Configure Lockout Duration</p>
+                <img src="images/security hardening/identity-authentication/lockout policy/lockout duration.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Configure Reset Counter</p>
+                <img src="images/security hardening/identity-authentication/lockout policy/reset counter.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Activate Account Lockout Policy</p>
+                <img src="images/security hardening/identity-authentication/lockout policy/activate policy.png">
+            </div>
         </div>
+
+        <h4>Result</h4>
+        <ul>
+            <li>Brute-force attempts limited: <span class="success">✔</span></li>
+            <li>Unauthorized login attempts blocked after threshold: <span class="success">✔</span></li>
+        </ul>
     </div>
 
+    <!-- USER HARDENING -->
+    <div class="step">
+        <h3>User Account Hardening</h3>
 
-    <!-- User Hardening -->
-    <div class="card">
-        <h2>User Account Hardening</h2>
+        <h4>Problem</h4>
+        <p>
+        User accounts were configured with insecure settings, including passwords set to never expire,
+        increasing the risk of long-term credential exposure.
+        </p>
 
-        <div class="step">
+        <h4>Risk</h4>
+        <ul>
+            <li>Long-term use of compromised credentials</li>
+            <li>No forced password rotation</li>
+            <li>Increased likelihood of credential reuse</li>
+        </ul>
 
-            <h3>Description</h3>
-            <p>
-            Existing user accounts were reviewed and updated to eliminate insecure configurations
-            and enforce better credential hygiene.
-            </p>
+        <h4>Implementation</h4>
+        <ul>
+            <li>Reviewed user account configurations</li>
+            <li>Removed "Password never expires" setting</li>
+            <li>Enabled secure password policies</li>
+            <li>Executed script to enforce configuration across users</li>
+        </ul>
 
-            <h3>Implementation</h3>
-            <ul>
-                <li>Enabled "User must change password at next logon"</li>
-                <li>Reviewed existing user configurations</li>
-                <li>Removed insecure account settings</li>
-            </ul>
+        <h4 class="image-title">Configuration Steps</h4>
 
-            <h3 class="image-title">Configuration Evidence</h3>
-            <div class="VM-network-images">
-                <div class="image-card">
-                    <p class="image-title">User account security settings</p>
-                    <img src="images/security hardening/01-identity-authentication/account-security/user-properties.png">
-                </div>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">User account with insecure setting (Password never expires)</p>
+                <img src="images/security hardening/identity-authentication/user-hardening/user properties - password never expires.png">
             </div>
 
-            <h3>Result</h3>
-            <ul>
-                <li>Improved account security posture: <span class="success">✔</span></li>
-                <li>Reduced risk of credential compromise: <span class="success">✔</span></li>
-            </ul>
+            <div class="image-card">
+                <p class="image-title">Executing script to enforce secure configuration on all users</p>
+                <img src="images/security hardening/identity-authentication/user-hardening/running scrpit for users.png">
+            </div>
 
+            <div class="image-card">
+                <p class="image-title">User account after hardening (secure configuration applied)</p>
+                <img src="images/security hardening/identity-authentication/user-hardening/user properties - fixed.png">
+            </div>
         </div>
+
+        <h4>Result</h4>
+        <ul>
+            <li>Insecure account settings removed: <span class="success">✔</span></li>
+            <li>Password expiration enforced: <span class="success">✔</span></li>
+            <li>Improved credential lifecycle management: <span class="success">✔</span></li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>Validation</h3>
+
+        <h4>Objective</h4>
+        <p>
+        To verify that the implemented authentication controls effectively enforce
+        strong password policies and prevent brute-force attacks.
+        </p>
+
+        <h4>Test Scenarios</h4>
+        <ul>
+            <li>Attempt to set weak passwords</li>
+            <li>Force password change for users</li>
+            <li>Trigger account lockout through failed login attempts</li>
+        </ul>
+
+        <h4 class="image-title">Validation Steps</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">User attempts to log in with the old password</p>
+                <img src="images/security hardening/identity-authentication/test/inputing lod password.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">User forced to change password</p>
+                <img src="images/security hardening/identity-authentication/test/passwords change.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">User attempts to set a weak password</p>
+                <img src="images/security hardening/identity-authentication/test/try putting short password.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Domain policy enforces password requirements</p>
+                <img src="images/security hardening/identity-authentication/test/policy enforce.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Account locked after multiple failed attempts</p>
+                <img src="images/security hardening/identity-authentication/test/user locked.png">
+            </div>
+        </div>
+
+        <h4>Results</h4>
+        <ul>
+            <li>Weak passwords rejected: <span class="success">✔</span></li>
+            <li>Password policy enforced successfully: <span class="success">✔</span></li>
+            <li>User password reset enforced: <span class="success">✔</span></li>
+            <li>Account lockout triggered after failed attempts: <span class="success">✔</span></li>
+        </ul>
+
+        <h4>Conclusion</h4>
+        <p>
+        The implemented authentication controls successfully enforced strong password policies
+        and prevented brute-force attacks. Weak credentials were rejected, and repeated login attempts
+        resulted in account lockout, effectively mitigating unauthorized access.
+        </p>
     </div>
 </div>
 
+<div class="card">
+    <h2>2. Network Hardening & Intrusion Prevention</h2>
+
+    <!-- OVERVIEW -->
+    <div class="step">
+        <h3>Overview</h3>
+
+        <p>
+        During the attack phase, network-level protections were not enforced,
+        allowing brute-force attacks and HTTP flood activity to proceed without restriction.
+        </p>
+
+        <p>
+        This phase focuses on implementing preventive controls to actively block malicious traffic
+        and reduce the attack surface at the network level.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>SSH Brute Force Protection (Fail2Ban)</h3>
+
+        <h4>Problem</h4>
+        <p>
+        The SSH service was exposed to unlimited authentication attempts,
+        allowing brute-force attacks to succeed.
+        </p>
+
+        <h4>Implementation</h4>
+        <ul>
+            <li>Installed Fail2Ban on the SIEM server</li>
+            <li>Enabled and started the Fail2Ban service</li>
+            <li>Configured SSH protection (sshd jail)</li>
+            <li>Defined ban threshold and duration</li>
+        </ul>
+
+        <h4 class="image-title">Configuration Steps</h4>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Installing Fail2Ban</p>
+                <img src="images/security hardening/network-protection/fail2ban (brute force)/install fail2ban ob siem 1.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Activating Fail2Ban</p>
+                <img src="images/security hardening/network-protection/fail2ban (brute force)/activate fail2ban.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Opening Fail2Ban configuration</p>
+                <img src="images/security hardening/network-protection/fail2ban (brute force)/open fail2ban conf file.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Configuring SSH protection</p>
+                <img src="images/security hardening/network-protection/fail2ban (brute force)/fail2ban conf.png">
+            </div>
+        </div>
+
+        <h4>Configuration Explanation</h4>
+        <ul>
+            <li><strong>bantime:</strong> Defines how long an IP address is banned after exceeding the threshold. 
+            A longer ban time increases protection but may affect legitimate users.</li>
+
+            <li><strong>findtime:</strong> The time window (in seconds) in which failed login attempts are counted. 
+            Helps define how quickly repeated attempts are considered malicious.</li>
+
+            <li><strong>maxretry:</strong> The number of failed login attempts allowed before triggering a ban. 
+            Lower values provide stronger protection against brute-force attacks.</li>
+
+            <li><strong>sshd jail:</strong> Specifies that Fail2Ban monitors SSH authentication logs 
+            and applies the configured rules to SSH login attempts.</li>
+
+            <li><strong>logpath:</strong> Defines the log file Fail2Ban monitors (e.g., auth.log), 
+            which contains SSH authentication events.</li>
+        </ul>
+
+        <h4>Result</h4>
+        <ul>
+            <li>Brute-force protection enabled: <span class="success">✔</span></li>
+            <li>Attacker IPs automatically banned: <span class="success">✔</span></li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>HTTP Flood Mitigation (iptables)</h3>
+
+        <h4>Problem</h4>
+        <p>
+        The web server was vulnerable to HTTP flood attacks,
+        allowing high volumes of requests without any rate limiting or blocking.
+        </p>
+
+        <h4>Implementation</h4>
+        <ul>
+            <li>Implemented iptables rules for rate limiting</li>
+            <li>Configured connection thresholds per IP</li>
+            <li>Blocked excessive HTTP requests</li>
+        </ul>
+
+        <h4 class="image-title">Configuration Steps</h4>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">iptables rule for HTTP flood protection</p>
+                <img src="images/security hardening/network-protection/http flood IPS/iptables rule.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Show rule in iptables</p>
+                <img src="images/security hardening/network-protection/http flood IPS/iptables show.png">
+            </div>
+        </div>
+
+        <h4>Configuration Explanation</h4>
+        <ul>
+            <li><strong>-A INPUT:</strong> Appends the rule to the INPUT chain, 
+            meaning it applies to incoming traffic to the server.</li>
+
+            <li><strong>-p tcp --dport 80:</strong> Targets TCP traffic on port 80 (HTTP), 
+            focusing protection on the web server.</li>
+
+            <li><strong>-m connlimit:</strong> Uses the connection limit module 
+            to restrict the number of simultaneous connections per IP address.</li>
+
+            <li><strong>--connlimit-above:</strong> Defines the threshold for allowed connections. 
+            Connections exceeding this limit are considered suspicious.</li>
+
+            <li><strong>-j DROP:</strong> Drops packets that exceed the defined threshold, 
+            effectively blocking excessive requests from the attacker.</li>
+        </ul>
+        <p>
+        This rule enforces rate limiting at the network level, preventing a single source 
+        from overwhelming the server with excessive HTTP requests.
+        </p>
+
+        <h4>Result</h4>
+        <ul>
+            <li>HTTP flood activity limited: <span class="success">✔</span></li>
+            <li>Excessive requests blocked: <span class="success">✔</span></li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>Validation</h3>
+
+        <h4>Objective</h4>
+        <p>
+        To verify that network-level protections successfully detect and block malicious activity.
+        </p>
+
+        <h4>Test Scenarios</h4>
+        <ul>
+            <li>Executed SSH brute-force attack (Hydra)</li>
+            <li>Executed HTTP flood attack (Apache Benchmark)</li>
+        </ul>
+
+        <h4 class="image-title">Validation Evidence</h4>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Brute-force attack blocked (Fail2Ban)</p>
+                <img src="images/security hardening/network-protection/fail2ban (brute force)/kali attack fail.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Fail2Ban banning attacker IP</p>
+                <img src="images/security hardening/network-protection/fail2ban (brute force)/check fail2ban after attack.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">HTTP flood mitigation in action</p>
+                <img src="images/security hardening/network-protection/http flood IPS/show attack fail.png">
+            </div>
+
+        </div>
+
+        <h4>Results</h4>
+        <ul>
+            <li>Brute-force attack blocked: <span class="success">✔</span></li>
+            <li>Attacker IP banned automatically: <span class="success">✔</span></li>
+            <li>HTTP flood mitigated: <span class="success">✔</span></li>
+        </ul>
+
+        <h4>Conclusion</h4>
+        <p>
+        Network protection mechanisms successfully transformed the environment from detection-only
+        to active prevention, blocking malicious traffic and reducing attack impact.
+        </p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>3. Access Control & Visibility</h2>
+
+    <!-- OVERVIEW -->
+    <div class="step">
+        <h3>Overview</h3>
+
+        <p>
+        During the attack phase, sensitive data was accessed due to overly permissive permissions
+        and lack of monitoring on file activity.
+        </p>
+
+        <p>
+        This phase focuses on enforcing strict access control and improving visibility
+        into file activity across the environment.
+        </p>
+
+        <p>
+        Security controls were implemented to restrict access based on least privilege principles,
+        while auditing and monitoring mechanisms were introduced to detect unauthorized data access.
+        </p>
+
+        <p>
+        Security controls without visibility are ineffective — therefore,
+        both access restriction and activity monitoring were implemented together.
+        </p>
+    </div>
+
+    <!-- FILE SERVER HARDENING -->
+    <div class="step">
+        <h3>File Server Hardening (Permissions)</h3>
+
+        <h4>Problem</h4>
+        <p>
+        Sensitive folders were accessible to a broad group of users due to overly permissive
+        access control settings, including the presence of the "Users" group.
+        </p>
+
+        <h4>Risk</h4>
+        <ul>
+            <li>Unauthorized access to sensitive data</li>
+            <li>Increased risk of data exposure and exfiltration</li>
+            <li>Lack of proper access control enforcement</li>
+        </ul>
+
+        <h4>Implementation</h4>
+        <ul>
+            <li>Removed the "Users" group from sensitive folders</li>
+            <li>Restricted access based on specific roles</li>
+            <li>Applied least privilege access model</li>
+            <li>Disabled inherited permissions on sensitive directories</li>
+        </ul>
+
+        <h4 class="image-title">Configuration</h4>
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Removing "Users" group from sensitive folder</p>
+                <img src="images/security hardening/Access Control & Visibility/file server hardening/remove users.png">
+            </div>
+
+        </div>
+
+        <h4>Result</h4>
+        <ul>
+            <li>Unauthorized access removed: <span class="success">✔</span></li>
+            <li>Access restricted based on roles: <span class="success">✔</span></li>
+            <li>Least privilege successfully enforced: <span class="success">✔</span></li>
+        </ul>
+
+        <h4>Analysis</h4>
+        <p>
+        By removing unnecessary permissions and enforcing least privilege,
+        access to sensitive data was significantly reduced, limiting the potential
+        impact of compromised accounts.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>File Auditing Configuration (Event ID 4663)</h3>
+
+        <h4>Problem</h4>
+        <p>
+        File access activity was not monitored, allowing sensitive data to be accessed
+        without generating logs or visibility.
+        </p>
+
+        <h4>Risk</h4>
+        <ul>
+            <li>No visibility into file access behavior</li>
+            <li>Data exfiltration without detection</li>
+            <li>Inability to investigate suspicious activity</li>
+        </ul>
+
+        <h4>Implementation</h4>
+        <p>
+        File auditing was implemented in two stages: enabling global audit policy
+        and applying auditing on specific sensitive folders.
+        </p>
+
+        <!-- ===================== -->
+        <!-- PHASE 1: POLICY -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Phase 1 — Enable Audit Policy</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Enabling "Audit Object Access" in Local Security Policy</p>
+                <img src="images/security hardening/Access Control & Visibility/File Auditing Configuration/local security policy.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Configuring file auditing policy</p>
+                <img src="images/security hardening/Access Control & Visibility/File Auditing Configuration/file auditing.png">
+            </div>
+
+        </div>
+
+        <p>
+        This step enables the system to generate audit logs for object access events,
+        but does not yet define which files or folders will be monitored.
+        </p>
+
+        <!-- ===================== -->
+        <!-- PHASE 2: FOLDERS -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Phase 2 — Apply Auditing on Sensitive Folders</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Opening Advanced Security settings</p>
+                <img src="images/security hardening/Access Control & Visibility/File Auditing Configuration/auditing on folders/open security on folders.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Go to Auditing and add a new audit entry</p>
+                <img src="images/security hardening/Access Control & Visibility/File Auditing Configuration/auditing on folders/open advanced and auditing.png">
+            </div>
+            
+            <div class="image-card">
+                <p class="image-title">Adding auditing entry for folder access</p>
+                <img src="images/security hardening/Access Control & Visibility/File Auditing Configuration/auditing on folders/add auditing entry.png">
+            </div>
+        </div>
+
+        <p>
+        Auditing was applied to sensitive folders, defining which users and actions
+        (such as read or access) should be logged.
+        </p>
+
+        <!-- ===================== -->
+        <!-- RESULT -->
+        <!-- ===================== -->
+
+        <h4>Result</h4>
+        <ul>
+            <li>File access events generated (Event ID 4663): <span class="success">✔</span></li>
+            <li>Visibility into user activity on sensitive data: <span class="success">✔</span></li>
+            <li>Foundation established for SIEM-based detection: <span class="success">✔</span></li>
+        </ul>
+
+        <h4>Analysis</h4>
+        <p>
+        File auditing requires both a global audit policy and specific auditing configuration
+        on target resources. Without both components, no audit events would be generated.
+        </p>
+
+        <p>
+        This configuration bridges the gap between access control and detection,
+        ensuring that all file access activity is logged and available for analysis.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>File Access Monitoring & Detection (Wazuh SIEM)</h3>
+
+        <h4>Problem</h4>
+        <p>
+        Although file access logs were generated (Event ID 4663), there was no centralized monitoring
+        or detection capability to identify suspicious activity in real time.
+        </p>
+
+        <h4>Risk</h4>
+        <ul>
+            <li>File access activity not monitored centrally</li>
+            <li>Delayed or missed detection of data exfiltration</li>
+            <li>No correlation between user actions and system events</li>
+        </ul>
+
+        <h4>Implementation</h4>
+        <ul>
+            <li>Configured Wazuh agent to collect Windows Security logs</li>
+            <li>Enabled ingestion of file access events (Event ID 4663)</li>
+            <li>Created custom detection rule for file access activity</li>
+            <li>Implemented correlation rule (login + file access)</li>
+        </ul>
+
+        <h4 class="image-title">Log Collection Setup</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Adding Security log collection in Wazuh agent</p>
+                <img src="images/security hardening/Access Control & Visibility/File Access Monitoring/add in wazuh agent.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Enabling archives.log for full event visibility</p>
+                <img src="images/security hardening/Access Control & Visibility/File Access Monitoring/activate archives.log.png">
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- DETECTION RULE -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Detection Rule</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Custom rule for file access detection (Event ID 4663)</p>
+                <img src="images/security hardening/Access Control & Visibility/File Access Monitoring/create file access detection rule.png">
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- CORRELATION -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Correlation Rule</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Correlation between login (4624) and file access (4663)</p>
+                <img src="images/security hardening/Access Control & Visibility/File Access Monitoring/login and correlation rule.png">
+            </div>
+
+        </div>
+
+        <h4>Result</h4>
+        <ul>
+            <li>Centralized visibility of file access events: <span class="success">✔</span></li>
+            <li>Real-time detection of sensitive file activity: <span class="success">✔</span></li>
+            <li>Correlation between user login and file access: <span class="success">✔</span></li>
+        </ul>
+
+        <h4>Analysis</h4>
+        <p>
+        Integrating file auditing with Wazuh SIEM enabled real-time monitoring and detection of file access activity.
+        Custom rules and correlation logic significantly improved visibility into user behavior,
+        allowing detection of potential data exfiltration scenarios.
+        </p>
+
+    </div>
+    <div class="step">
+        <h3>Validation</h3>
+
+        <h4>Objective</h4>
+        <p>
+        To validate that access controls prevent unauthorized access, file activity is logged,
+        and detection rules successfully identify suspicious behavior in the SIEM.
+        </p>
+
+        <h4>Test Scenario</h4>
+        <ul>
+            <li>Attempted unauthorized access to restricted folder</li>
+            <li>Simulated data exfiltration by accessing sensitive files</li>
+            <li>Verified log generation (Event ID 4663)</li>
+            <li>Confirmed SIEM detection and correlation alerts</li>
+        </ul>
+
+        <!-- ===================== -->
+        <!-- ACCESS CONTROL -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Access Control Validation</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Unauthorized access blocked (test user from IT to Management)</p>
+                <img src="images/security hardening/Access Control & Visibility/validation/trying to access management with test user.png">
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- ATTACK SIMULATION -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Attack Simulation (Data Exfiltration)</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Accessing and retrieving sensitive file from server</p>
+                <img src="images/security hardening/Access Control & Visibility/validation/get file from server.png">
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- LOG GENERATION -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">Log Generation (Event ID 4663)</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">File access event recorded in Windows Security logs</p>
+                <img src="images/security hardening/Access Control & Visibility/validation/log is created.png">
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- SIEM DETECTION -->
+        <!-- ===================== -->
+
+        <h4 class="image-title">SIEM Detection & Alerts</h4>
+
+        <div class="VM-network-images">
+
+            <div class="image-card">
+                <p class="image-title">Raw log data collected in SIEM</p>
+                <img src="images/security hardening/Access Control & Visibility/validation/wazuh log.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">File access detection alerts in Wazuh</p>
+                <img src="images/security hardening/Access Control & Visibility/validation/wazuh events.png">
+            </div>
+
+            <div class="image-card">
+                <p class="image-title">Correlation alert: login followed by file access (data exfiltration scenario)</p>
+                <img src="images/security hardening/Access Control & Visibility/validation/data exfiltration in wazuh.png">
+            </div>
+        </div>
+
+        <h4>Results</h4>
+        <ul>
+            <li>Unauthorized access successfully blocked: <span class="success">✔</span></li>
+            <li>File access events generated (Event ID 4663): <span class="success">✔</span></li>
+            <li>SIEM detected file access activity: <span class="success">✔</span></li>
+            <li>Correlation rule identified potential data exfiltration: <span class="success">✔</span></li>
+        </ul>
+
+        <h4>Conclusion</h4>
+        <p>
+        The validation confirmed that access control mechanisms, auditing, and SIEM detection
+        work together to provide end-to-end protection. Unauthorized access is prevented,
+        legitimate access is logged, and suspicious behavior is detected and correlated in real time.
+        </p>
+
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+</div>
+
+<script src="../script.js"></script>
 </body>
 </html>
