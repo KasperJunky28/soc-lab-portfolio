@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Outcomes & Capabilities</title>
+    <link rel="stylesheet" href="Project-Outcomes -and-Capabilities.css">
+    <link rel="stylesheet" href="animations.css">
+
+</head>
+<body>
+
+<!-- ===================== -->
+<!-- SIDEBAR -->
+<!-- ===================== -->
+
+<div class="sidebar">
+    <h2>SOC Lab</h2>
+    <a href="../index.html">🏠 Home</a>
+    <a href="../SOC Project/project-overview.html">Project Overview</a>
+    <a href="../SOC Project/Network-Overview.html">Network Overview</a>
+    <a href="../SOC Project/infrastracture.html">Infrastructure</a>
+    <a href="../SOC Project/identity-and-services.html">Identity & Services</a>
+    <a href="../SOC Project/enterprize-services.html">Enterprise Services</a>
+    <a href="../SOC Project/security-stack.html">Security Stack</a>
+    <a href="../SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
+    <a href="../SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
+    <a href="../SOC Project/security-hardening.html">Security Hardening</a>
+    <a href="../SOC Project/project-outcomes.html" class="active">Project Outcomes</a>
+</div>
+
+<!-- ===================== -->
+<!-- MAIN -->
+<!-- ===================== -->
+
+<div class="main">
+
+<h1>Project Outcomes & Capabilities</h1>
+
+<!-- ===================== -->
+<!-- OVERVIEW -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Project Overview</h2>
+
+    <div class="step">
+        <p>
+        This project simulates a full enterprise security environment, combining infrastructure deployment,
+        identity management, network configuration, attack simulation, detection engineering, and security hardening.
+        </p>
+
+        <p>
+        The environment was designed to replicate real-world security challenges,
+        including misconfigurations, detection gaps, and attacker behavior across multiple stages of an attack lifecycle.
+        </p>
+
+        <p>
+        The project demonstrates the complete transition from a vulnerable system
+        to a hardened, monitored, and detection-capable environment.
+        </p>
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- ATTACK LIFECYCLE -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Attack → Defense Lifecycle</h2>
+
+    <div class="step">
+
+        <p>
+        The project follows a full attack lifecycle, starting from external reconnaissance
+        and progressing through internal compromise and data exfiltration,
+        followed by defensive improvements and validation.
+        </p>
+
+        <ul>
+            <li>External Attacks → Nmap scanning, brute-force, HTTP flood</li>
+            <li>Initial Access → Credential compromise</li>
+            <li>Lateral Movement → SMB enumeration and access to internal shares</li>
+            <li>Data Exfiltration → Retrieval of sensitive files</li>
+        </ul>
+
+        <p><strong>Defensive Phase:</strong></p>
+
+        <ul>
+            <li>Security Hardening → Authentication, network, and access control improvements</li>
+            <li>Monitoring → Logging and SIEM integration</li>
+            <li>Detection → Custom rules and correlation logic</li>
+            <li>Validation → Full attack replay under hardened conditions</li>
+        </ul>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- INFRASTRUCTURE -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Infrastructure & System Engineering</h2>
+
+    <div class="step">
+
+        <p>
+        Built and configured a complete enterprise-like lab environment from scratch,
+        including servers, endpoints, and network architecture.
+        </p>
+
+        <ul>
+            <li>Deployed Active Directory Domain Controller</li>
+            <li>Configured DNS and DHCP services</li>
+            <li>Created organizational units, users, and group policies</li>
+            <li>Built and configured a File Server with multiple shared directories</li>
+            <li>Configured Windows and Linux machines across the network</li>
+            <li>Designed and implemented internal network segmentation</li>
+        </ul>
+
+        <p>
+        This required understanding of enterprise infrastructure design,
+        system configuration, and network communication.
+        </p>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- NETWORK SECURITY -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Network Security & Protection</h2>
+
+    <div class="step">
+
+        <ul>
+            <li>Implemented Fail2Ban to prevent SSH brute-force attacks</li>
+            <li>Configured iptables rules to mitigate HTTP flood (DoS)</li>
+            <li>Analyzed attack traffic and validated blocking mechanisms</li>
+        </ul>
+
+        <p>
+        These controls introduced active network-level defense,
+        reducing exposure to automated attacks and service disruption.
+        </p>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- IDENTITY -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Identity & Access Management</h2>
+
+    <div class="step">
+
+        <ul>
+            <li>Configured password policies using Group Policy</li>
+            <li>Implemented account lockout mechanisms</li>
+            <li>Hardened user accounts and removed insecure configurations</li>
+        </ul>
+
+        <p>
+        These controls significantly reduced the likelihood of credential compromise
+        and unauthorized access to domain resources.
+        </p>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- VISIBILITY -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Logging, Visibility & Endpoint Monitoring</h2>
+
+    <div class="step">
+
+        <ul>
+            <li>Enabled Windows auditing for object access (Event ID 4663)</li>
+            <li>Configured Sysmon for endpoint visibility</li>
+            <li>Collected and analyzed security logs</li>
+        </ul>
+
+        <p>
+        Visibility into system activity is essential for detecting malicious behavior
+        and understanding attacker actions.
+        </p>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- SIEM -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>SIEM & Detection Engineering</h2>
+
+    <div class="step">
+
+        <ul>
+            <li>Deployed and configured Wazuh SIEM</li>
+            <li>Integrated log collection from endpoints</li>
+            <li>Created custom detection rules</li>
+            <li>Implemented correlation logic between events</li>
+        </ul>
+
+        <p>
+        Example correlation:
+        Login event (4624) + File access (4663) → Data exfiltration detection
+        </p>
+
+        <p>
+        This demonstrates the ability to move beyond raw logs
+        into meaningful detection and behavioral analysis.
+        </p>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- SECURITY CONCEPTS -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Security Concepts Demonstrated</h2>
+
+    <div class="step">
+
+        <ul>
+            <li>Least Privilege</li>
+            <li>Defense in Depth</li>
+            <li>Prevention vs Detection</li>
+            <li>Visibility as a security requirement</li>
+            <li>Correlation-based detection</li>
+        </ul>
+
+    </div>
+</div>
+
+<!-- ===================== -->
+<!-- FINAL ANALYSIS -->
+<!-- ===================== -->
+
+<div class="card">
+    <h2>Final Analysis</h2>
+
+    <div class="step">
+
+        <p>
+        This project demonstrates a complete security lifecycle:
+        from building infrastructure, simulating attacks, identifying weaknesses,
+        implementing defenses, and validating detection capabilities.
+        </p>
+
+        <p>
+        The environment evolved from a vulnerable system into a layered security model
+        combining prevention, monitoring, and detection.
+        </p>
+
+        <p>
+        This reflects real-world security operations,
+        where multiple controls must work together to protect systems effectively.
+        </p>
+
+        <p>
+        <strong>
+        Security is not a single control,
+        but a combination of layered defenses working together.
+        </strong>
+        </p>
+
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

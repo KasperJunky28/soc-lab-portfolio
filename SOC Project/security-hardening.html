@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <title>Security Hardening</title>
     <link rel="stylesheet" href="security-hardening.css">
+    <link rel="stylesheet" href="animations.css">
 </head>
 <body>
 
 <div class="sidebar">
-    <h2>SOC Lab</h2>
+    <h2>SOC Project</h2>
     <a href="../index.html">🏠 Home</a>
     <a href="../SOC Project/project-overview.html">Project Overview</a>
     <a href="../SOC Project/Network-Overview.html">Network Overview</a>
@@ -30,7 +31,7 @@
     <section class="card">
         <h2>Security Assessment Summary</h2>
 
-        <div class="step">
+
 
             <p>
             The attack simulation demonstrated a full compromise of the lab environment,
@@ -64,8 +65,6 @@
             The following sections focus on implementing security controls to eliminate these weaknesses,
             improve detection visibility, and introduce prevention mechanisms.
             </p>
-
-        </div>
     </section>
 
     <section class="card">
@@ -110,9 +109,9 @@
                 <li>Configured password history and expiration</li>
             </ul>
 
-            <h4 class="image-title">Configuration Steps</h4>
+            <h3 class="image-title">Configuration Steps</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Open Group Policy Management</p>
@@ -186,9 +185,9 @@
                 <li>Applied settings via Group Policy (Domain level)</li>
             </ul>
 
-            <h4 class="image-title">Configuration Steps</h4>
+            <h3 class="image-title">Configuration Steps</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Navigate to Account Lockout Policy Settings</p>
@@ -248,9 +247,9 @@
                 <li>Executed script to enforce configuration across users</li>
             </ul>
 
-            <h4 class="image-title">Configuration Steps</h4>
+            <h3 class="image-title">Configuration Steps</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">User account with insecure setting (Password never expires)</p>
@@ -292,9 +291,9 @@
                 <li>Trigger account lockout through failed login attempts</li>
             </ul>
 
-            <h4 class="image-title">Validation Steps</h4>
+            <h3 class="image-title">Validation Steps</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">User attempts to log in with the old password</p>
@@ -378,8 +377,8 @@
                 <li>Defined ban threshold and duration</li>
             </ul>
 
-            <h4 class="image-title">Configuration Steps</h4>
-            <div class="VM-network-images">
+            <h3 class="image-title">Configuration Steps</h4>
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Installing Fail2Ban</p>
@@ -447,8 +446,8 @@
                 <li>Blocked excessive HTTP requests</li>
             </ul>
 
-            <h4 class="image-title">Configuration Steps</h4>
-            <div class="VM-network-images">
+            <h3 class="image-title">Configuration Steps</h4>
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">iptables rule for HTTP flood protection</p>
@@ -508,8 +507,8 @@
                 <li>Executed HTTP flood attack (Apache Benchmark)</li>
             </ul>
 
-            <h4 class="image-title">Validation Evidence</h4>
-            <div class="VM-network-images">
+            <h3 class="image-title">Validation Evidence</h4>
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Brute-force attack blocked (Fail2Ban)</p>
@@ -600,8 +599,8 @@
                 <li>Applied least privilege access model</li>
             </ul>
 
-            <h4 class="image-title">Configuration</h4>
-            <div class="VM-network-images">
+            <h3 class="image-title">Configuration</h4>
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Removing "Users" group from sensitive folder</p>
@@ -651,9 +650,9 @@
             <!-- PHASE 1: POLICY -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Phase 1 — Enable Audit Policy</h4>
+            <h3 class="image-title">Phase 1 — Enable Audit Policy</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Enabling "Audit Object Access" in Local Security Policy</p>
@@ -676,9 +675,9 @@
             <!-- PHASE 2: FOLDERS -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Phase 2 — Apply Auditing on Sensitive Folders</h4>
+            <h3 class="image-title">Phase 2 — Apply Auditing on Sensitive Folders</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Opening Advanced Security settings</p>
@@ -769,9 +768,9 @@
                 <li>Implemented correlation rule (login + file access)</li>
             </ul>
 
-            <h4 class="image-title">Log Collection Setup</h4>
+            <h3 class="image-title">Log Collection Setup</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Adding Security log collection in Wazuh agent</p>
@@ -789,9 +788,9 @@
             <!-- DETECTION RULE -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Detection Rule</h4>
+            <h3 class="image-title">Detection Rule</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Custom rule for file access detection (Event ID 4663)</p>
@@ -804,9 +803,9 @@
             <!-- CORRELATION -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Correlation Rule</h4>
+            <h3 class="image-title">Correlation Rule</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Correlation between login (4624) and file access (4663)</p>
@@ -851,9 +850,9 @@
             <!-- ACCESS CONTROL -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Access Control Validation</h4>
+            <h3 class="image-title">Access Control Validation</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Unauthorized access blocked (test user from IT to Management)</p>
@@ -866,9 +865,9 @@
             <!-- ATTACK SIMULATION -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Attack Simulation (Data Exfiltration)</h4>
+            <h3 class="image-title">Attack Simulation (Data Exfiltration)</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Accessing and retrieving sensitive file from server</p>
@@ -881,9 +880,9 @@
             <!-- LOG GENERATION -->
             <!-- ===================== -->
 
-            <h4 class="image-title">Log Generation (Event ID 4663)</h4>
+            <h3 class="image-title">Log Generation (Event ID 4663)</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">File access event recorded in Windows Security logs</p>
@@ -896,9 +895,9 @@
             <!-- SIEM DETECTION -->
             <!-- ===================== -->
 
-            <h4 class="image-title">SIEM Detection & Alerts</h4>
+            <h3 class="image-title">SIEM Detection & Alerts</h4>
 
-            <div class="VM-network-images">
+            <div class="image-div">
 
                 <div class="image-card">
                     <p class="image-title">Raw log data collected in SIEM</p>

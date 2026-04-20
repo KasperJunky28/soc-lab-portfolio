@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Identity & Core Services</title>
     <link rel="stylesheet" href="../SOC Project/identity-and-services.css">
+    <link rel="stylesheet" href="animations.css">
 </head>
 <body>
 
@@ -16,8 +17,8 @@
         <a href="../SOC Project/identity-and-services.html" class="active">Identity & Services</a>
         <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
         <a href="/SOC Project/security-stack.html">Security Stack</a>
-        <a href="/SOC Project/attack-and-detection-external.html">External Attacks</a>
-        <a href="/SOC Project/attack-and-detection-internal.html">Internal Attacks</a>
+        <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
+        <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
         <a href="/SOC Project/security-hardening.html">Security Hardening</a>
 </div>
 
@@ -81,7 +82,7 @@
             </ul>
 
             <!-- 🔁 images -->
-            <div class="VM-network-images">
+            <div class="image-div">
                 <!-- duplicate this block -->
                 <div class="image-card">
                     <div class="image-title">AD, DHCP and DNS services Installation</div>
@@ -113,7 +114,7 @@
             </p>
 
             <!-- 🔁 images -->
-            <div class="VM-network-images">
+            <div class="image-div">
                 <!-- duplicate this block -->
                 <div class="image-card">
                     <div class="image-title">IP configuration</div>
@@ -151,7 +152,7 @@
             and potential attack paths such as privilege escalation.
             </p>
 
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <div class="image-title">Create OU - "Domain Controllers"</div>
                     <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT - ADMIN.png">
@@ -176,16 +177,16 @@
                 </div>
                 <div class="image-card">
                     <div class="image-title">add servers to "servers"</div>
-                    <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  SERVERS.png" style="height: 400px;">
+                    <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  SERVERS.png">
                 </div>
                 <div class="image-card" >
                     <div class="image-title">add computers to "workstations"</div>
-                    <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  WORKSTATIONS.png" style="height: 400px;">
+                    <img src="/SOC Project/images/identity and services/DC/AD/ORG UNIT -  WORKSTATIONS.png">
                 </div>
 
                 <div class="image-card">
                     <div class="image-title">Create new user</div>
-                    <img src="/SOC Project/images/identity and services/DC/AD/AD - NEW USER.png" style="height: 400px;">
+                    <img src="/SOC Project/images/identity and services/DC/AD/AD - NEW USER.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">create weak password for the new user (abc123456!)</div>
@@ -193,7 +194,7 @@
                 </div>
                 <div class="image-card">
                     <div class="image-title">add new user to a group</div>
-                    <img src="/SOC Project/images/identity and services/DC/AD/AD- ADD USER TO GROUP.png" style="height: 400px;">
+                    <img src="/SOC Project/images/identity and services/DC/AD/AD- ADD USER TO GROUP.png">
                 </div>
             </div>
         </div>
@@ -218,10 +219,10 @@
             making it an important visibility and detection point.
             </p>
 
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <div class="image-title">DNS Configuration</div>
-                    <img src="/SOC Project/images/identity and services/DC/DNS/DNS CONF.png">
+                    <img src="/SOC Project/images/identity and services/DC/DNS/DNS CONF.png" style="width: 600px;">
                 </div>
             </div>
         </div>
@@ -246,14 +247,14 @@
             DHCP logs can provide visibility into device presence and network behavior.
             </p>
 
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <div class="image-title">Add domain to DHCP</div>
                     <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP ADD DC01.png">
                 </div>
             </div>
 
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <div class="image-title">Create new DHCP scope</div>
                     <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP NEW SCOPE.png">
@@ -276,7 +277,7 @@
 
                 <div class="image-card" id="dhcp-show">
                     <div class="image-title">Clients automatically receive IP addresses</div>
-                    <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP SHOW.png" style="width: 700px;">
+                    <img src="/SOC Project/images/identity and services/DC/DHCP/DHCP SHOW.png">
                 </div>
             </div>
         </div>
@@ -303,34 +304,34 @@
             user authentication logging, and detection of suspicious activity.
             </p>
 
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <div class="image-title">Add PC to the domain</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/ADD PC TO DOMAIN.png" style="height: 450px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/ADD PC TO DOMAIN.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">PC is added to the domain</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/PC IS CONNECTED TO DOMAIN.png" style="height: 400px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/PC IS CONNECTED TO DOMAIN.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">the computer communicates with the DC</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/PING.png" style="height: 550px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/PING.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">sign in with the user Created</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/SIGH IN WITH NEW USER.png" style="height: 500px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/SIGH IN WITH NEW USER.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">the computer uses the corporate DNS</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/DNS RESOLVE.png" style="height: 250px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/DNS RESOLVE.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">the computer recieves an IP address from the DHCP</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/PC RECIVES IP.png" style="height: 250px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/PC RECIVES IP.png">
                 </div>
                 <div class="image-card">
                     <div class="image-title">user settings</div>
-                    <img src="../SOC Project/images/identity and services/CLIENT/USER SETTINGS.png" style="height: 400px;">
+                    <img src="../SOC Project/images/identity and services/CLIENT/USER SETTINGS.png">
                 </div>
             </div>
         </div>

@@ -1,117 +1,164 @@
+/* ===================== */
 /* RESET */
+/* ===================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ===================== */
 /* BODY */
+/* ===================== */
 body {
     font-family: "Segoe UI", sans-serif;
     display: flex;
-    background-color: #0b0f19;
+    background: radial-gradient(circle at top, #0b1220, #020617);
     color: #e5e7eb;
 }
 
+/* ===================== */
 /* SIDEBAR */
+/* ===================== */
 .sidebar {
     width: 250px;
     height: 100vh;
     background: #020617;
-    padding: 20px;
+    padding: 24px 20px;
     position: fixed;
     border-right: 1px solid #1f2937;
 }
 
 .sidebar h2 {
     color: #ef4444;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 20px;
 }
 
 .sidebar a {
     display: block;
     color: #9ca3af;
     text-decoration: none;
-    margin: 10px 0;
-    padding: 10px;
+    margin: 8px 0;
+    padding: 10px 12px;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: 0.25s;
+    font-size: 14px;
 }
 
 .sidebar a:hover {
-    background: #1f2937;
-    color: #ef4444;
+    background: #111827;
+    color: #ffffff;
 }
 
 .sidebar a.active {
-    background: #1f2937;
+    background: #111827;
     color: #ef4444;
     border-left: 3px solid #ef4444;
 }
 
+/* ===================== */
 /* MAIN */
+/* ===================== */
 .main {
     margin-left: 250px;
-    padding: 40px 60px;
+    padding: 50px 60px;
     width: calc(100% - 250px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* HEADERS */
+/* ===================== */
+/* TYPOGRAPHY */
+/* ===================== */
 h1 {
-    color: #ef4444;
     margin-bottom: 25px;
+    color: #ef4444;
+    font-size: 32px;
 }
 
 h2 {
     color: #f87171;
+    margin-bottom: 10px;
 }
 
-/* CARDS */
+h3 {
+    color: #ff3b3b;
+    margin-top: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+p {
+    line-height: 1.7;
+    color: #d1d5db;
+}
+
+/* ===================== */
+/* CARD */
+/* ===================== */
 .card {
-    background: #1e293b;
+    width: 100%;
+    max-width: 1100px;
+
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(6px);
+
     padding: 25px;
+    margin-bottom: 25px;
+
     border-radius: 14px;
-    margin-bottom: 20px;
-    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    transition: 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+    transform: translateY(-4px);
+    border-color: rgba(239, 68, 68, 0.4);
 }
 
+/* ===================== */
 /* LISTS */
+/* ===================== */
 .network-list,
 .components-list {
-    margin-top: 10px;
+    margin-top: 12px;
     padding-left: 20px;
-    line-height: 1.6;
 }
 
 .network-list li,
 .components-list li {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    line-height: 1.6;
 }
 
 .network-list strong {
     color: #ef4444;
 }
 
+/* ===================== */
 /* TEXT */
+/* ===================== */
 .why-text {
-    margin-top: 10px;
-    line-height: 1.6;
+    margin-top: 12px;
+    line-height: 1.7;
+    color: #d1d5db;
 }
 
+/* ===================== */
 /* DIAGRAM */
+/* ===================== */
 .diagram {
     display: block;
     width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
+    max-width: 900px;
+    margin: 25px auto;
     border-radius: 12px;
     border: 1px solid #1f2937;
-    transition: 0.3s;
+    transition: 0.25s;
 }
 
 .diagram:hover {

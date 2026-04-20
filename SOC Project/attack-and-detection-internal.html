@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Attack & Detection - Internal</title>
     <link rel="stylesheet" href="/SOC Project/attack-and-detection.css">
+    <link rel="stylesheet" href="animations.css">
 </head>
 <body>
 
@@ -92,7 +93,7 @@
             </p>
 
             <h3 class="image-title">Evidence</h3>
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <p class="image-title">Connecting to SIEM01 CLI using SSH</p>
                     <img src="images/attack and detection/credential discovery/shh to siemadmin.png">
@@ -166,14 +167,14 @@
             </p>
 
             <h3 class="image-title">Execution Evidence</h3>
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <p class="image-title">SMB shares enumeration</p>
                     <img src="images/attack and detection/credential discovery/connect to file server with smbclient and user.png">
                 </div>
             </div>
             <h3></h3>
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <p class="image-title">Access denied (Finance/HR)</p>
                     <img src="images/attack and detection/credential discovery/trying to connect to finance and hr - failed.png">
@@ -241,7 +242,7 @@
             </p>
 
             <h3 class="image-title">Execution Evidence</h3>
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <p class="image-title">Sensitive file identified and downloaded</p>
                     <img src="images/attack and detection/credential discovery/get confedential file.png">
@@ -293,7 +294,7 @@
 
             <h3>Detection Evidence</h3>
 
-            <div class="VM-network-images">
+            <div class="image-div">
                 <div class="image-card">
                     <p class="image-title">SIEM detected SMB authentication</p>
                     <img src="images/attack and detection/credential discovery/siem - detects connection from siem to file01.png">
