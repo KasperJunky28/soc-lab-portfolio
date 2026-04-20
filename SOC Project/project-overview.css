@@ -9,7 +9,7 @@
 body {
     font-family: "Segoe UI", sans-serif;
     display: flex;
-    background: radial-gradient(circle at top, #0f172a, #020617);
+    background-color: #0b0f19;
     color: #e5e7eb;
 }
 
@@ -25,25 +25,25 @@ body {
 
 .sidebar h2 {
     color: #ef4444;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-.sidebar a {
+.sidebar nav a {
     display: block;
     color: #9ca3af;
     text-decoration: none;
-    margin: 10px 0;
+    margin: 8px 0;
     padding: 10px;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: all 0.25s ease;
 }
 
-.sidebar a:hover {
+.sidebar nav a:hover {
     background: #1f2937;
     color: #ef4444;
 }
 
-.sidebar a.active {
+.sidebar nav a.active {
     background: #1f2937;
     color: #ef4444;
     border-left: 3px solid #ef4444;
@@ -52,64 +52,83 @@ body {
 /* MAIN */
 .main {
     margin-left: 250px;
-    padding: 40px;
-    width: 100%;
+    padding: 40px 60px;
+    width: calc(100% - 250px);
 }
 
-/* HEADERS */
+/* HEADER */
+.page-header {
+    margin-bottom: 30px;
+}
+
 h1 {
     color: #ef4444;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
-h2 {
-    color: #f87171;
+.subtitle {
+    color: #9ca3af;
+    font-size: 15px;
 }
 
 /* CARDS */
 .card {
     background: #1e293b;
-    padding: 25px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-    transition: 0.3s;
+    padding: 28px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid #1f2937;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.15);
+}
+
+/* HEADINGS */
+.card h2 {
+    color: #f87171;
+    margin-bottom: 10px;
 }
 
 /* TEXT */
 .card p {
     margin-top: 10px;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: #d1d5db;
 }
 
 .card ul {
-    margin-top: 10px;
+    margin-top: 12px;
     padding-left: 20px;
 }
 
 .card ul li {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    line-height: 1.6;
 }
 
-/* PHASES */
+.card strong {
+    color: #ef4444;
+}    
+
+/* PHASES GRID */
 .phases {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
     margin-top: 15px;
 }
 
 .phase {
     background: #020617;
-    padding: 15px;
+    padding: 16px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #1f2937;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .phase:hover {

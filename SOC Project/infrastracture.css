@@ -60,8 +60,8 @@ body {
 /* ===================== */
 .main {
     margin-left: 250px;
-    padding: 30px;
-    width: 100%;
+    padding: 40px 60px;
+    width: calc(100% - 250px);
 }
 
 /* ===================== */
@@ -91,6 +91,21 @@ h2, h3 {
     transform: translateY(-5px);
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
 }
+
+.card ul {
+    margin-top: 12px;
+    padding-left: 20px;
+}
+
+.card ul li {
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+.card strong {
+    color: #ef4444;
+}    
+
 /*////////////////////////////////////////////////////////////////////
 
 /* ===================== */

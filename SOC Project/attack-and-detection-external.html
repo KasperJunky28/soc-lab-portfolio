@@ -8,7 +8,7 @@
 <body>
 
 <div class="sidebar">
-    <h2>SOC Lab</h2>
+    <h2>SOC Project</h2>
     <a href="/index.html">🏠 Home</a>
     <a href="../SOC Project/project-overview.html">Project Overview</a>
     <a href="/SOC Project/Network-Overview.html">Network Overview</a>
@@ -21,498 +21,490 @@
     <a href="/SOC Project/security-hardening.html">Security Hardening</a>
 </div>
 
-<div class="main">
+<main class="main">
 
-<h1>Attack & Detection</h1>
+    <header>
+        <h1>External Threat Simulation & Detection Analysis</h1>
+    </header>
 
-<!-- Overview -->
-<div class="card">
-    <h2>Overview</h2>
-    <div class="step">
-        <p>
-            In this phase, multiple attack techniques were executed against the lab environment
-            to evaluate detection and response capabilities.
+    <!-- Overview -->
+    <section class="card">
+        
+        <h2>Phase Overview</h2>
+         <p>
+        In this phase, external attack techniques were executed from an attacker-controlled machine
+        to evaluate the visibility, detection capabilities, and security posture of the environment.
         </p>
 
-        <ul>
-            <li>External attacks (Kali Linux)</li>
-            <li>Validation of SIEM, IDS, and endpoint detection</li>
-        </ul>
+        <p>
+        The objective is to simulate realistic adversary behavior and analyze how effectively
+        the security stack identifies, logs, and responds to each stage of the attack lifecycle.
+        </p>
 
         <p><strong>Methodology:</strong><br>
-        Each attack follows the same structure: description → execution → evidence → detection → result → analysis
+        Each attack is analyzed using a structured approach:
+        description → execution → evidence → detection → result → security analysis
         </p>
 
-        <p>
-        <strong>Lab Environment Note:</strong><br>
-        Due to hardware resource limitations, not all virtual machines in the lab environment could be executed simultaneously during this phase.
-        As a result, only the systems relevant to each specific attack scenario were powered on.
+        <p><strong>Environment Note:</strong><br>
+        Due to hardware limitations, only relevant systems were powered on per scenario.
+        This allowed stable execution while preserving realistic attack conditions.
         </p>
+    </section>
 
-        <p>
-        This approach ensured optimal performance and stability during attack simulations,
-        while still maintaining realistic testing conditions for detection and analysis.
-        </p>
-    </div>
-</div>
+    <!-- NMAP -->
+    <section class="card">
 
-<div class="card">
-    <h2>Nmap Scan (Network Reconnaissance)</h2>
-    <div class="step">
+        <h2>Reconnaissance – Nmap Scan</h2>
 
-        <h3>Description</h3>
-        <p>
-            An Nmap SYN scan was performed from the Kali Linux attacker machine
-            to enumerate hosts, open ports, and services across the internal network.
-        </p>
+        <div class="step">
 
-        <h3>Execution</h3>
-        <ul>
-            <li><strong>Command used:</strong> nmap -sS -sV 192.168.59.0/24</li>
-            <li><strong>Source machine:</strong> Kali Linux</li>
-            <li><strong>Target:</strong> Internal network (192.168.59.0/24)</li>
-        </ul>
+            <h3>Description</h3>
+            <p>
+            A SYN-based Nmap scan was conducted to identify active hosts, open ports,
+            and exposed services across the internal network.
+            </p>
 
-        <h3>Command Breakdown</h3>
-        <ul>
-            <li><strong>-sS (SYN Scan):</strong> Performs a half-open TCP scan by sending SYN packets without completing the full handshake. This allows fast and relatively stealthy detection of open ports.</li>
+            <h3>Execution</h3>
+            <ul>
+                <li><strong>Command used:</strong> nmap -sS -sV 192.168.59.0/24</li>
+                <li><strong>Source machine:</strong> Kali Linux</li>
+                <li><strong>Target:</strong> Internal network (192.168.59.0/24)</li>
+            </ul>
 
-            <li><strong>-sV (Service Version Detection):</strong> Identifies running services and their versions by analyzing responses from open ports. This helps determine potential vulnerabilities.</li>
+            <h3>Command Breakdown</h3>
+            <ul>
+                <li><strong>-sS (SYN Scan):</strong> Performs a half-open TCP scan by sending SYN packets without completing the full handshake. This allows fast and relatively stealthy detection of open ports.</li>
 
-            <li><strong>192.168.59.0/24:</strong> Scans the entire subnet to discover all active hosts and exposed services within the network.</li>
-        </ul>
+                <li><strong>-sV (Service Version Detection):</strong> Identifies running services and their versions by analyzing responses from open ports. This helps determine potential vulnerabilities.</li>
 
-        <p>
-        This scan reveals the attack surface by identifying reachable hosts, open ports, and running services, forming the foundation for further exploitation attempts.
-        </p>
+                <li><strong>192.168.59.0/24:</strong> Scans the entire subnet to discover all active hosts and exposed services within the network.</li>
+            </ul>
 
-        <h3 class="image-title">Execution Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Nmap scan results - host discovery part 1</p>
-                <img src="images/attack and detection/Nmap/kali 1.png">
+            <p><strong>Security impact:</strong><br>
+            This phase reveals the attack surface, allowing attackers to identify
+            critical systems and potential entry points.
+            </p>
+
+            <h3 class="image-title">Execution Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Nmap scan results - host discovery part 1</p>
+                    <img src="images/attack and detection/Nmap/kali 1.png">
+                </div>
+
+                <div class="image-card">
+                    <p class="image-title">Nmap scan results - host discovery part 2</p>
+                    <img src="images/attack and detection/Nmap/kali 2.png">
+                </div>
             </div>
 
-            <div class="image-card">
-                <p class="image-title">Nmap scan results - host discovery part 2</p>
-                <img src="images/attack and detection/Nmap/kali 2.png">
+            <h3>Execution Findings</h3>
+            <ul>
+                <li>Domain Controller (DC01) identified with Kerberos, LDAP, SMB services</li>
+                <li>Windows host exposing RPC and SMB services</li>
+                <li>SIEM01 and server identified with SSH (port 22) open</li>
+                <li>WEB01 identified with http service (port 80)</li>
+            </ul>
+
+            <h3>Logs Generated</h3>
+            <ul>
+                <li>Network IDS alerts (Suricata)</li>
+                <li>Wazuh SIEM alerts</li>
+            </ul>
+
+            <h3 class="image-title">Detection Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Wazuh alert - Nmap detection</p>
+                    <img src="images/attack and detection/Nmap/siem.png">
+                </div>
             </div>
+
+            <h3>Detection</h3>
+            <ul>
+                <li>Detected by: Wazuh SIEM</li>
+                <li>Technique: Network Reconnaissance</li>
+                <li>MITRE ATT&CK: T1595</li>
+                <li>Severity: Medium</li>
+            </ul>
+
+            <h3>Result</h3>
+            <ul>
+                <li>Visibility (logs): <span class="success">✔</span></li>
+                <li>Detection: <span class="success">✔</span></li>
+                <li>Prevention: <span class="fail">❌</span></li>
+            </ul>
+
+            <p><strong>Analysis:</strong><br>
+            The Nmap scan successfully identified multiple critical systems within the network,
+            including the domain controller, web server, file server and SIEM server. The activity was detected by a custom
+            Wazuh rule, confirming visibility into reconnaissance techniques.
+            </p>
+
+            <p>
+            However, the scan was not blocked, highlighting a gap between detection and prevention.
+            This indicates that while monitoring is effective, additional controls such as firewall rules
+            or intrusion prevention systems (IPS) are required to actively mitigate reconnaissance activity.
+            </p>
+
+            <p>
+            The scan results were later used to identify attack surfaces,
+            including SSH access on the SIEM server, which was targeted in a subsequent brute-force attack.
+            </p>
         </div>
+    </section>
 
-        <h3>Execution Findings</h3>
-        <ul>
-            <li>Domain Controller (DC01) identified with Kerberos, LDAP, SMB services</li>
-            <li>Windows host exposing RPC and SMB services</li>
-            <li>SIEM01 and server identified with SSH (port 22) open</li>
-            <li>WEB01 identified with http service (port 80)</li>
-        </ul>
+    <section class="card">
 
-        <h3>Logs Generated</h3>
-        <ul>
-            <li>Network IDS alerts (Suricata)</li>
-            <li>Wazuh SIEM alerts</li>
-        </ul>
+        <h2>Credential Attack – SSH Brute Force</h2>
 
-        <h3 class="image-title">Detection Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Wazuh alert - Nmap detection</p>
-                <img src="images/attack and detection/Nmap/siem.png">
-            </div>
-        </div>
+        <div class="step">
 
-        <h3>Detection</h3>
-        <ul>
-            <li>Detected by: Wazuh SIEM</li>
-            <li>Rule: Custom Nmap SYN Scan detection</li>
-            <li>MITRE ATT&CK: T1595 – Reconnaissance</li>
-            <li>Severity: 3</li>
-            <li>Action: Allowed (no blocking)</li>
-        </ul>
+            <h3>Description</h3>
+            <p>
+                A brute-force attack was conducted against the SSH service on the SIEM01 server
+                to simulate unauthorized access attempts using a password wordlist.
+            </p>
 
-        <h3>Result</h3>
-        <ul>
-            <li>Logs generated: <span class="success">✔</span></li>
-            <li>Detected: <span class="success">✔</span></li>
-            <li>Blocked: <span class="fail">❌</span></li>
-        </ul>
+            <h3>Execution</h3>
+            <ul>
+                <li><strong>Tool used:</strong> Hydra</li>
+                <li><strong>Command:</strong> hydra -l siemadmin -P passwords.txt ssh://192.168.59.40</li>
+                <li><strong>Source machine:</strong> Kali Linux</li>
+                <li><strong>Target:</strong> SIEM01 (SSH)</li>
+            </ul>
 
-        <p><strong>Analysis:</strong><br>
-        The Nmap scan successfully identified multiple critical systems within the network,
-        including the domain controller, web server, file server and SIEM server. The activity was detected by a custom
-        Wazuh rule, confirming visibility into reconnaissance techniques.
-        </p>
+            <h3>Command Breakdown</h3>
+            <ul>
+                <li><strong>hydra:</strong> A password brute-force tool used to automate authentication attempts against various network services.</li>
 
-        <p>
-        However, the scan was not blocked, highlighting a gap between detection and prevention.
-        This indicates that while monitoring is effective, additional controls such as firewall rules
-        or intrusion prevention systems (IPS) are required to actively mitigate reconnaissance activity.
-        </p>
+                <li><strong>-l siemadmin:</strong> Specifies the target username for the attack.</li>
 
-        <p>
-        The scan results were later used to identify attack surfaces,
-        including SSH access on the SIEM server, which was targeted in a subsequent brute-force attack.
-        </p>
-    </div>
-</div>
+                <li><strong>-P passwords.txt:</strong> Provides a wordlist of passwords used to attempt authentication.</li>
 
-<div class="card">
-    <h2>SSH Brute Force Attack (SIEM01)</h2>
-    <div class="step">
+                <li><strong>ssh://192.168.59.40:</strong> Targets the SSH service on the SIEM server.</li>
+            </ul>
 
-        <h3>Description</h3>
-        <p>
-            A brute-force attack was conducted against the SSH service on the SIEM01 server
-            to simulate unauthorized access attempts using a password wordlist.
-        </p>
-
-        <h3>Execution</h3>
-        <ul>
-            <li><strong>Tool used:</strong> Hydra</li>
-            <li><strong>Command:</strong> hydra -l siemadmin -P passwords.txt ssh://192.168.59.40</li>
-            <li><strong>Source machine:</strong> Kali Linux</li>
-            <li><strong>Target:</strong> SIEM01 (SSH)</li>
-        </ul>
-
-        <h3>Command Breakdown</h3>
-        <ul>
-            <li><strong>hydra:</strong> A password brute-force tool used to automate authentication attempts against various network services.</li>
-
-            <li><strong>-l siemadmin:</strong> Specifies the target username for the attack.</li>
-
-            <li><strong>-P passwords.txt:</strong> Provides a wordlist of passwords used to attempt authentication.</li>
-
-            <li><strong>ssh://192.168.59.40:</strong> Targets the SSH service on the SIEM server.</li>
-        </ul>
-
-        <p>
-
-        <!-- ===================== -->
-        <!-- 🔴 PHASE 1 -->
-        <!-- ===================== -->
-
-        <h3>Phase 1 — Failed Attempt (Incorrect Username)</h3>
-
-        <ul>
-            <li>Username used: root</li>
-            <li>Password list: passwords.txt</li>
-            <li>Result: Authentication failed</li>
-        </ul>
-
-        <h3 class="image-title">Execution Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Hydra brute-force attempt (root)</p>
-                <img src="images/attack and detection/brute force/kali 1.png">
-            </div>
-        </div>
-
-        <h3 class="image-title">Detection Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Wazuh alerts - authentication failures</p>
-                <img src="images/attack and detection/brute force/ssh failed - brute force.png">
-            </div>
-        </div>
-
-        <p>
-            The attack generated multiple failed SSH login attempts, which were detected
-            by the SIEM and mapped to brute-force techniques.
-        </p>
-
-        <!-- ===================== -->
-        <!-- 🟢 PHASE 2 -->
-        <!-- ===================== -->
-
-        <h3>Phase 2 — Successful Attack (Valid Credentials)</h3>
-
-        <ul>
-            <li>Username used: siemadmin</li>
-            <li>Password discovered: 123456</li>
-            <li>Result: Successful authentication</li>
-        </ul>
-
-        <h3 class="image-title">Execution Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Hydra successful login</p>
-                <img src="images/attack and detection/brute force/kali 2.png">
-            </div>
-        </div>
-
-        <h3 class="image-title">Detection Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Wazuh alerts - brute force + login success</p>
-                <img src="images/attack and detection/brute force/ssh success - brute force.png">
-            </div>
-        </div>
-
-        <!-- ===================== -->
-        <!-- LOGS & DETECTION -->
-        <!-- ===================== -->
-
-        <h3>Logs Generated</h3>
-        <ul>
-            <li>SSH authentication logs (failed attempts)</li>
-            <li>Successful login event</li>
-            <li>SIEM alerts triggered for brute-force activity</li>
-        </ul>
-
-        <h3>Detection</h3>
-        <ul>
-            <li>Detected by: Wazuh SIEM</li>
-            <li>MITRE ATT&CK: T1110.001 – Brute Force</li>
-            <li>MITRE ATT&CK: T1078 – Valid Accounts</li>
-            <li>Alert type: SSH authentication failure & brute-force detection</li>
-        </ul>
-
-        <!-- ===================== -->
-        <!-- RESULT -->
-        <!-- ===================== -->
-
-        <h3>Result</h3>
-        <ul>
-            <li>Logs generated: <span class="success">✔</span></li>
-            <li>Detected: <span class="success">✔</span></li>
-            <li>Access gained: <span class="success">✔</span></li>
-            <li>Blocked: <span class="fail">❌</span></li>
-        </ul>
-
-        <!-- ===================== -->
-        <!-- ANALYSIS -->
-        <!-- ===================== -->
-
-        <p><strong>Analysis:</strong><br>
-        The initial brute-force attempt failed due to incorrect username assumptions,
-        despite the correct password being present in the wordlist.
-        This highlights the importance of accurate reconnaissance in attack success.
-        </p>
-
-        <p>
-        After identifying the correct username, the attacker successfully gained access
-        to the SIEM server using weak credentials. The activity was fully visible in the SIEM,
-        with alerts generated for both failed attempts and successful authentication.
-        </p>
-
-        <p>
-        However, no account lockout or rate-limiting mechanisms were enforced,
-        allowing the attacker to continue attempts until valid credentials were found.
-        This represents a critical security gap in authentication protection.
-        </p>
-        <p>
-        The SSH service on SIEM01 was identified during the initial Nmap reconnaissance phase,
-        and later targeted in this brute-force attack.
-        </p>
-    </div>
-</div>
-
-<div class="card">
-    <h2>HTTP Flood Simulation (Web Server)</h2>
-
-    <div class="step">
-        <h3>Description</h3>
-        <p>
-            A denial-of-service simulation was performed by generating a high volume of HTTP requests
-            from the Kali Linux attacker machine against the internal web server.
-            The goal was to evaluate the server’s resilience and the detection capabilities of the monitoring systems.
-        </p>
+            <p><strong>Security impact:</strong><br>
+            Weak credentials and lack of account protection mechanisms allow attackers
+            to gain unauthorized access to critical systems.
+            </p>
 
             <!-- ===================== -->
-            <!-- EXECUTION -->
+            <!-- 🔴 PHASE 1 -->
             <!-- ===================== -->
 
-        <h3>Execution</h3>
-        <ul>
-            <li>Tool used: Apache Benchmark (ab)</li>
-            <li>Command: ab -n 5000 -c 200 http://192.168.59.30/</li>
-            <li>Source machine: Kali Linux (192.168.100.10)</li>
-            <li>Target: Web Server (192.168.59.30)</li>
-            <li>Attack type: HTTP Flood (DoS Simulation)</li>
-        </ul>
+            <h3>Phase 1 — Failed Attempt (Incorrect Username)</h3>
+            
+            <ul>
+                <li>Username used: root</li>
+                <li>Password list: passwords.txt</li>
+                <li>Result: Authentication failed</li>
+            </ul>
 
-        <h3>Command Breakdown</h3>
-        <ul>
-            <li><strong>ab (Apache Benchmark):</strong> A tool used to simulate HTTP load and evaluate web server performance under stress conditions.</li>
-
-            <li><strong>-n 5000:</strong> Defines the total number of HTTP requests sent to the server, simulating high traffic volume.</li>
-
-            <li><strong>-c 200:</strong> Specifies concurrency, meaning 200 requests are sent simultaneously to simulate multiple clients.</li>
-
-            <li><strong>http://192.168.59.30/:</strong> Target web server receiving the HTTP requests.</li>
-        </ul>
-
-        <h3 class="image-title">Execution Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">HTTP flood execution (Kali)</p>
-                <img src="images/attack and detection/DOS/kali attack.png">
+            <h3 class="image-title">Execution Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Hydra brute-force attempt (root)</p>
+                    <img src="images/attack and detection/brute force/kali 1.png">
+                </div>
             </div>
-        </div>
 
-            <!-- ===================== -->
-            <!-- OBSERVATION -->
-            <!-- ===================== -->
-
-        <h3>Execution Findings</h3>
-        <ul>
-            <li>Thousands of HTTP requests were generated in a short time</li>
-            <li>The web server remained responsive and continued serving content</li>
-            <li>No visible performance degradation was observed from the client perspective</li>
-        </ul>
-
-        <h3 class="image-title">Web Server Response</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Web server remains accessible</p>
-                <img src="images/attack and detection/DOS/web page.png">
+            <h3 class="image-title">Detection Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Wazuh alerts - authentication failures</p>
+                    <img src="images/attack and detection/brute force/ssh failed - brute force.png">
+                </div>
             </div>
-        </div>
+
+            <p>
+                The attack generated multiple failed SSH login attempts, which were detected
+                by the SIEM and mapped to brute-force techniques.
+            </p>
 
             <!-- ===================== -->
-            <!-- LOGS -->
+            <!-- 🟢 PHASE 2 -->
             <!-- ===================== -->
 
-        <h3>Logs Generated</h3>
-        <ul>
-            <li>Apache access logs recorded a high volume of incoming requests</li>
-            <li>All requests returned HTTP 200 (successful responses)</li>
-            <li>Traffic originated from the attacker machine (Kali)</li>
-        </ul>
+            <h3>Phase 2 — Successful Attack (Valid Credentials)</h3>
 
-        <h3 class="image-title">Logs Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Apache access logs (flood of requests)</p>
-                <img src="images/attack and detection/DOS/web01 logs.png">
+            <ul>
+                <li>Username used: siemadmin</li>
+                <li>Password discovered: 123456</li>
+                <li>Result: Successful authentication</li>
+            </ul>
+
+            <h3 class="image-title">Execution Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Hydra successful login</p>
+                    <img src="images/attack and detection/brute force/kali 2.png">
+                </div>
             </div>
-        </div>
 
-            <!-- ===================== -->
-            <!-- DETECTION -->
-            <!-- ===================== -->
-        <h3 class="image-title">Detection Evidence</h3>
-        <div class="VM-network-images">
-            <div class="image-card">
-                <p class="image-title">Wazuh SIEM detection</p>
-                <img src="images/attack and detection/DOS/siem.png">
+            <h3 class="image-title">Detection Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Wazuh alerts - brute force + login success</p>
+                    <img src="images/attack and detection/brute force/ssh success - brute force.png">
+                </div>
             </div>
-        </div>
 
-        <h3>Detection</h3>
-        <ul>
-            <li>Detected by: Suricata IDS</li>
-            <li>Alert type: TCP stream anomalies</li>
-            <li>Examples:</li>
-            <li>SURICATA STREAM invalid ACK</li>
-            <li>SYN resend with different sequence</li>
-            <li>Severity: Medium (Level 3)</li>
-        </ul>
+            <!-- ===================== -->
+            <!-- LOGS & DETECTION -->
+            <!-- ===================== -->
+
+            <h3>Logs Generated</h3>
+            <ul>
+                <li>SSH authentication logs (failed attempts)</li>
+                <li>Successful login event</li>
+                <li>SIEM alerts triggered for brute-force activity</li>
+            </ul>
+
+            <h3>Detection</h3>
+            <ul>
+                <li>Detected by: Wazuh SIEM</li>
+                <li>MITRE ATT&CK: T1110.001 – Brute Force</li>
+                <li>MITRE ATT&CK: T1078 – Valid Accounts</li>
+                <li>Alert type: SSH authentication failure & brute-force detection</li>
+            </ul>
 
             <!-- ===================== -->
             <!-- RESULT -->
             <!-- ===================== -->
 
-        <h3>Result</h3>
-        <ul>
-            <li>Service availability: <span class="success">Stable</span></li>
-            <li>Performance impact: Minimal</li>
-            <li>Requests handled successfully: <span class="success">✔</span></li>
-            <li>Detected (Network Level): <span class="success">✔</span></li>
-            <li>Detected (SIEM Correlation): <span class="fail">❌</span></li>
-            <li>Blocked: <span class="fail">❌</span></li>
-        </ul>
+            <h3>Result</h3>
+            <ul>
+                <li>Visibility: <span class="success">✔</span></li>
+                <li>Detection: <span class="success">✔</span></li>
+                <li>Compromise: <span class="success">✔</span></li>
+                <li>Prevention: <span class="fail">❌</span></li>
+            </ul>
 
             <!-- ===================== -->
             <!-- ANALYSIS -->
             <!-- ===================== -->
 
-        <p><strong>Analysis:</strong><br>
-        The HTTP flood simulation generated abnormal network traffic patterns,
-        which were detected by Suricata as TCP stream anomalies, including invalid ACK packets
-        and irregular TCP sequence behavior.
-        </p>
+            <p><strong>Analysis:</strong><br>
+            The initial brute-force attempt failed due to incorrect username assumptions,
+            despite the correct password being present in the wordlist.
+            This highlights the importance of accurate reconnaissance in attack success.
+            </p>
 
-        <p>
-        This indicates that the IDS was able to identify low-level network irregularities
-        caused by the high volume of requests.
-        </p>
+            <p>
+            After identifying the correct username, the attacker successfully gained access
+            to the SIEM server using weak credentials. The activity was fully visible in the SIEM,
+            with alerts generated for both failed attempts and successful authentication.
+            </p>
 
-        <p>
-        However, no high-level detection of HTTP flood or denial-of-service activity was observed,
-        and no alerts were correlated to indicate an ongoing attack.
-        </p>
+            <p>
+            However, no account lockout or rate-limiting mechanisms were enforced,
+            allowing the attacker to continue attempts until valid credentials were found.
+            This represents a critical security gap in authentication protection.
+            </p>
+            <p>
+            The SSH service on SIEM01 was identified during the initial Nmap reconnaissance phase,
+            and later targeted in this brute-force attack.
+            </p>
+        </div>
+    </section>
 
-        <p>
-        This highlights a gap in detection capabilities, where network anomalies are visible,
-        but not properly contextualized into actionable security alerts.
-        </p>
-    </div>
-</div>
+    <section class="card">
 
-<!-- ===================== -->
-<!-- 🧾 SUMMARY -->
-<!-- ===================== -->
+        <h2>Availability Attack – HTTP Flood</h2>
 
-<div class="card">
-    <h2>Attack Summary</h2>
+        <div class="step">
+            <h3>Description</h3>
+            <p>
+                A denial-of-service simulation was performed by generating a high volume of HTTP requests
+                from the Kali Linux attacker machine against the internal web server.
+                The goal was to evaluate the server’s resilience and the detection capabilities of the monitoring systems.
+            </p>
 
-    <div class="step">
-        <table>
-            <tr>
-                <th>Attack</th>
-                <th>Technique</th>
-                <th>Target</th>
-                <th>Detection Source</th>
-                <th>MITRE</th>
-                <th>Outcome</th>
-                <th>Security Gap</th>
-            </tr>
+                <!-- ===================== -->
+                <!-- EXECUTION -->
+                <!-- ===================== -->
 
-            <tr>
-                <td>Nmap Scan</td>
-                <td>Network Reconnaissance</td>
-                <td>Internal Network</td>
-                <td>Wazuh (Custom Rule)</td>
-                <td>T1595</td>
-                <td>Detected, Not Blocked</td>
-                <td>No IPS / Firewall restrictions</td>
-            </tr>
+            <h3>Execution</h3>
+            <ul>
+                <li>Tool used: Apache Benchmark (ab)</li>
+                <li>Command: ab -n 5000 -c 200 http://192.168.59.30/</li>
+                <li>Source machine: Kali Linux (192.168.100.10)</li>
+                <li>Target: Web Server (192.168.59.30)</li>
+                <li>Attack type: HTTP Flood (DoS Simulation)</li>
+            </ul>
 
-            <tr>
-                <td>SSH Brute Force</td>
-                <td>Password Attack</td>
-                <td>SIEM01 (SSH)</td>
-                <td>Wazuh</td>
-                <td>T1110, T1078</td>
-                <td>Access Gained</td>
-                <td>No account lockout / weak password</td>
-            </tr>
+            <h3>Command Breakdown</h3>
+            <ul>
+                <li><strong>ab (Apache Benchmark):</strong> A tool used to simulate HTTP load and evaluate web server performance under stress conditions.</li>
 
-            <tr>
-                <td>HTTP Flood</td>
-                <td>DoS Simulation</td>
-                <td>Web Server</td>
-                <td>Suricata (Network anomalies)</td>
-                <td>T1498</td>
-                <td>Not Detected (SIEM), Not Blocked</td>
-                <td>No correlation / no DoS detection</td>
-            </tr>
-        </table>
-    </div>
-</div>
+                <li><strong>-n 5000:</strong> Defines the total number of HTTP requests sent to the server, simulating high traffic volume.</li>
 
-<div class="card">
-    <h2>Key Findings</h2>
-    <div class="step">
-        <ul>
-            <li>Strong visibility for reconnaissance and authentication attacks via SIEM</li>
-            <li>Weak authentication controls allowed brute-force success</li>
-            <li>Detection exists at network level but lacks correlation (DoS case)</li>
-            <li>No active prevention mechanisms (IPS, rate limiting, lockouts)</li>
-        </ul>
-    </div>
-</div>
+                <li><strong>-c 200:</strong> Specifies concurrency, meaning 200 requests are sent simultaneously to simulate multiple clients.</li>
+
+                <li><strong>http://192.168.59.30/:</strong> Target web server receiving the HTTP requests.</li>
+            </ul>
+
+            <p><strong>Security impact:</strong><br>
+            High-volume traffic can degrade service availability
+            and impact business operations.
+            </p>
+
+            <h3 class="image-title">Execution Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">HTTP flood execution (Kali)</p>
+                    <img src="images/attack and detection/DOS/kali attack.png">
+                </div>
+            </div>
+
+            <h3>Execution Findings</h3>
+            <ul>
+                <li>Thousands of HTTP requests were generated in a short time</li>
+                <li>The web server remained responsive and continued serving content</li>
+                <li>No visible performance degradation was observed from the client perspective</li>
+            </ul>
+
+            <h3 class="image-title">Web Server Response</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Web server remains accessible</p>
+                    <img src="images/attack and detection/DOS/web page.png">
+                </div>
+            </div>
+
+            <h3>Logs Generated</h3>
+            <ul>
+                <li>Apache access logs recorded a high volume of incoming requests</li>
+                <li>All requests returned HTTP 200 (successful responses)</li>
+                <li>Traffic originated from the attacker machine (Kali)</li>
+            </ul>
+
+            <h3 class="image-title">Logs Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Apache access logs (flood of requests)</p>
+                    <img src="images/attack and detection/DOS/web01 logs.png">
+                </div>
+            </div>
+
+            <h3 class="image-title">Detection Evidence</h3>
+            <div class="VM-network-images">
+                <div class="image-card">
+                    <p class="image-title">Wazuh SIEM detection</p>
+                    <img src="images/attack and detection/DOS/siem.png">
+                </div>
+            </div>
+
+            <h3>Detection</h3>
+            <ul>
+                <li>Detected by: Suricata IDS</li>
+                <li>Alert type: TCP stream anomalies</li>
+                <li>Examples:</li>
+                <li>SURICATA STREAM invalid ACK</li>
+                <li>SYN resend with different sequence</li>
+                <li>Severity: Medium (Level 3)</li>
+            </ul>
+
+            <h3>Result</h3>
+            <ul>
+                <li>Service Stability: <span class="success">✔</span></li>
+                <li>Network Detection: <span class="success">✔</span></li>
+                <li>SIEM Correlation: <span class="fail">❌</span></li>
+                <li>Prevention: <span class="fail">❌</span></li>
+            </ul>
+
+            <p><strong>Analysis:</strong><br>
+            The HTTP flood simulation generated abnormal network traffic patterns,
+            which were detected by Suricata as TCP stream anomalies, including invalid ACK packets
+            and irregular TCP sequence behavior.
+            </p>
+
+            <p>
+            This indicates that the IDS was able to identify low-level network irregularities
+            caused by the high volume of requests.
+            </p>
+
+            <p>
+            However, no high-level detection of HTTP flood or denial-of-service activity was observed,
+            and no alerts were correlated to indicate an ongoing attack.
+            </p>
+
+            <p>
+            This highlights a gap in detection capabilities, where network anomalies are visible,
+            but not properly contextualized into actionable security alerts.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- 🧾 SUMMARY -->
+    <!-- ===================== -->
+
+    <section class="card">
+        <h2>Attack Summary</h2>
+
+        <div class="step">
+            <table>
+                <tr>
+                    <th>Attack</th>
+                    <th>Technique</th>
+                    <th>Target</th>
+                    <th>Detection Source</th>
+                    <th>MITRE</th>
+                    <th>Outcome</th>
+                    <th>Security Gap</th>
+                </tr>
+
+                <tr>
+                    <td>Nmap Scan</td>
+                    <td>Network Reconnaissance</td>
+                    <td>Internal Network</td>
+                    <td>Wazuh (Custom Rule)</td>
+                    <td>T1595</td>
+                    <td>Detected, Not Blocked</td>
+                    <td>No IPS / Firewall restrictions</td>
+                </tr>
+
+                <tr>
+                    <td>SSH Brute Force</td>
+                    <td>Password Attack</td>
+                    <td>SIEM01 (SSH)</td>
+                    <td>Wazuh</td>
+                    <td>T1110, T1078</td>
+                    <td>Access Gained</td>
+                    <td>No account lockout / weak password</td>
+                </tr>
+
+                <tr>
+                    <td>HTTP Flood</td>
+                    <td>DoS Simulation</td>
+                    <td>Web Server</td>
+                    <td>Suricata (Network anomalies)</td>
+                    <td>T1498</td>
+                    <td>Not Detected (SIEM), Not Blocked</td>
+                    <td>No correlation / no DoS detection</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="card">
+
+        <h2>Key Findings</h2>
+
+        <div class="step">
+            <ul>
+                <li>Strong visibility across reconnaissance and authentication activity</li>
+                <li>Detection without enforcement allows attacks to succeed</li>
+                <li>Weak identity controls enable credential-based compromise</li>
+                <li>Lack of correlation reduces effectiveness of network detection</li>
+            </ul>
+        </div>
+    </section>
+</main>
 
 <!-- MODAL -->
 <div id="imageModal" class="modal">

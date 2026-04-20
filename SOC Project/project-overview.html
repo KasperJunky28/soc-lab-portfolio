@@ -2,125 +2,144 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SOC Lab Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End-to-End Security Operations Case Study</title>
     <link rel="stylesheet" href="project-overview.css">
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>SOC Lab</h2>
-    <a href="/index.html">🏠 Home</a>
-    <a href="project-overview.html" class="active">Project Overview</a>
-    <a href="network-overview.html">Network Overview</a>
-    <a href="/SOC Project/infrastracture.html">Infrastructure</a>
-    <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
-    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
-    <a href="/SOC Project/security-stack.html">Security Stack</a>
-    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
-    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
-    <a href="/SOC Project/security-hardening.html">Security Hardening</a>
-</div>
+<aside class="sidebar">
+    <h2>SOC Project</h2>
+    <nav>
+        <a href="/index.html">🏠 Home</a>
+        <a href="project-overview.html" class="active">Project Overview</a>
+        <a href="network-overview.html">Network Overview</a>
+        <a href="/SOC Project/infrastracture.html">Infrastructure</a>
+        <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
+        <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+        <a href="/SOC Project/security-stack.html">Security Stack</a>
+        <a href="/SOC Project/attack-and-detection-external.html">External Attacks</a>
+        <a href="/SOC Project/attack-and-detection-internal.html">Internal Attacks</a>
+        <a href="/SOC Project/security-hardening.html">Security Hardening</a>
+    </nav>
+</aside>
 
-<div class="main">
+<main class="main">
 
-    <h1>SOC Lab Project</h1>
+    <header>
+        <h1>End-to-End Security Operations Case Study</h1>
+    </header>
 
-    <!-- PROJECT OVERVIEW -->
-    <div class="card">
+    <!-- OVERVIEW -->
+    <section class="card">
         <h2>Project Overview</h2>
+
         <p>
-        This project demonstrates the design, implementation, and security analysis of a full
-        Security Operations Center (SOC) lab environment.
+        This project presents a full-scale Security Operations Center (SOC) environment designed to simulate
+        a realistic enterprise network and evaluate security posture across the complete attack lifecycle.
         </p>
 
         <p>
-        The lab simulates a real-world enterprise network and focuses on the complete attack lifecycle —
-        from external reconnaissance to internal compromise and data exfiltration —
-        as well as detection, analysis, and security improvement.
+        The focus is not only on executing attacks, but on analyzing detection capabilities,
+        identifying visibility gaps, and implementing measurable security improvements.
         </p>
-
-        <p>
-        The project emphasizes both offensive simulation and defensive analysis,
-        highlighting detection capabilities, visibility gaps, and practical security hardening.
-        </p>
-    </div>
+    </section>
 
     <!-- OBJECTIVES -->
-    <div class="card">
-        <h2>Objectives</h2>
+    <section class="card">
+        <h2>Project Objectives</h2>
         <ul>
-            <li>Design and deploy a realistic enterprise network environment</li>
+            <li>Design and deploy a realistic enterprise network architecture</li>
             <li>Implement centralized monitoring and detection using Wazuh SIEM</li>
-            <li>Simulate real-world attack scenarios (external and internal)</li>
-            <li>Analyze detection coverage and identify security gaps</li>
-            <li>Map attack techniques to the MITRE ATT&CK framework</li>
-            <li>Implement security hardening based on identified weaknesses</li>
+            <li>Simulate external and internal attack scenarios</li>
+            <li>Identify detection gaps and improve visibility</li>
+            <li>Map activity to the MITRE ATT&CK framework</li>
+            <li>Apply and validate security hardening strategies</li>
         </ul>
-    </div>
+    </section>
 
-    <!-- TECHNOLOGIES -->
-    <div class="card">
-        <h2>Technologies Used</h2>
-        <ul>
-            <li>Windows Server (Active Directory, DNS, DHCP)</li>
-            <li>Windows 10 Clients</li>
-            <li>Apache Web Server</li>
-            <li>SMB / Windows File Server</li>
-            <li>Ubuntu Server (Wazuh SIEM)</li>
-            <li>Suricata IDS</li>
-            <li>Sysmon</li>
-            <li>Kali Linux (Attacker Machine)</li>
-        </ul>
-    </div>
+    <!-- ARCHITECTURE + TECH -->
+    <section class="card">
+        <h2>Architecture & Technology Overview</h2>
 
-    <!-- ARCHITECTURE SUMMARY -->
-    <div class="card">
-        <h2>Architecture Summary</h2>
         <p>
-        The lab environment is composed of multiple interconnected virtual machines,
-        segmented to simulate both internal enterprise infrastructure and external attacker access.
+        The environment consists of multiple interconnected systems representing a segmented enterprise network,
+        combining identity infrastructure, enterprise services, and security monitoring components.
         </p>
 
         <ul>
-            <li>Domain Controller (Active Directory, DNS, DHCP)</li>
-            <li>File Server with shared resources and permission structures</li>
-            <li>Web Server hosting internal applications</li>
-            <li>SIEM Server (Wazuh) for centralized logging and detection</li>
-            <li>Suricata IDS for network-level monitoring</li>
-            <li>Windows endpoints generating user activity</li>
-            <li>Kali Linux attacker machine simulating external threats</li>
+            <li><strong>Domain Controller:</strong> Active Directory, authentication, DNS, DHCP</li>
+            <li><strong>File Server:</strong> Sensitive data storage with structured access control</li>
+            <li><strong>Web Server:</strong> Internal service hosting</li>
+            <li><strong>Windows Endpoints:</strong> User activity simulation</li>
+            <li><strong>Wazuh SIEM:</strong> Centralized logging, correlation, and alerting</li>
+            <li><strong>Suricata IDS:</strong> Network traffic monitoring</li>
+            <li><strong>Sysmon:</strong> Endpoint-level visibility</li>
+            <li><strong>Kali Linux:</strong> Adversary simulation</li>
         </ul>
-    </div>
+    </section>
 
-    <!-- PROJECT FLOW -->
-    <div class="card">
+    <!-- THREAT MODEL -->
+    <section class="card">
+        <h2>Threat Model</h2>
+
+        <ul>
+            <li><strong>External Threats:</strong> Reconnaissance, scanning, initial access attempts</li>
+            <li><strong>Internal Threats:</strong> Privilege misuse, lateral movement, data access</li>
+            <li><strong>Objective:</strong> Simulate unauthorized access and data exfiltration</li>
+        </ul>
+    </section>
+
+    <!-- DETECTION -->
+    <section class="card">
+        <h2>Detection Strategy</h2>
+
+        <ul>
+            <li>Endpoint telemetry via Sysmon</li>
+            <li>Windows Event Logs (4624 – Login, 4663 – File Access)</li>
+            <li>Network monitoring with Suricata IDS</li>
+            <li>SIEM correlation using Wazuh</li>
+        </ul>
+
+        <p>
+        Key detection logic includes correlating successful logins with file access activity
+        to identify potential data exfiltration behavior.
+        </p>
+    </section>
+
+    <!-- PHASES -->
+    <section class="card">
         <h2>Project Phases</h2>
 
         <div class="phases">
-            <div class="phase">Infrastructure Setup</div>
-            <div class="phase">Identity & Core Services</div>
+            <div class="phase">Infrastructure</div>
+            <div class="phase">Identity</div>
             <div class="phase">Enterprise Services</div>
             <div class="phase">Security Stack</div>
-            <div class="phase">External Attack Simulation</div>
-            <div class="phase">Internal Attack Simulation</div>
-            <div class="phase">Detection & SIEM Analysis</div>
-            <div class="phase">Security Hardening</div>
+            <div class="phase">External Attacks</div>
+            <div class="phase">Internal Attacks</div>
+            <div class="phase">Hardening</div>
         </div>
-    </div>
+    </section>
 
-    <div class="card">
-        <h2>Key Skills Demonstrated</h2>
-        <ul>
-            <li>SIEM Monitoring & Log Analysis (Wazuh)</li>
-            <li>Network Traffic Analysis (Suricata IDS)</li>
-            <li>Attack Simulation & Adversary Emulation</li>
-            <li>Detection Engineering & Rule Creation</li>
-            <li>MITRE ATT&CK Mapping</li>
-            <li>Security Gap Analysis</li>
-            <li>Incident Investigation & Reporting</li>
-        </ul>
-    </div>
-</div>
+    <!-- SKILLS -->
+<section class="card">
+    <h2>Key Skills Demonstrated</h2>
+    <ul>
+        <li><strong>Enterprise Network Design & Deployment:</strong> Segmented lab architecture, VM networking, and infrastructure planning</li>
+        <li><strong>Active Directory & Identity Management:</strong> Domain setup, user management, authentication policies</li>
+        <li><strong>Enterprise Service Configuration:</strong> File Server (SMB permissions), Web Server (Apache), DNS & DHCP services</li>
+        <li><strong>SIEM Monitoring & Detection Engineering:</strong> Log collection, rule creation, and correlation (Wazuh)</li>
+        <li><strong>Endpoint & Network Visibility:</strong> Sysmon telemetry and Suricata IDS analysis</li>
+        <li><strong>Adversary Simulation:</strong> External and internal attack scenarios using Kali Linux</li>
+        <li><strong>MITRE ATT&CK Mapping:</strong> Mapping attack techniques to detection logic</li>
+        <li><strong>Security Gap Analysis:</strong> Identifying visibility and control weaknesses</li>
+        <li><strong>Security Hardening & Validation:</strong> Implementing improvements and validating via attack replay</li>
+    </ul>
+</section>
+
+</main>
 
 </body>
 </html>

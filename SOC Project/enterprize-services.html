@@ -7,151 +7,183 @@
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar">
-    <h2>SOC Lab</h2>
+    <h2>SOC Project</h2>
     <a href="/index.html">🏠 Home</a>
     <a href="../SOC Project/project-overview.html">Project Overview</a>
     <a href="network-overview.html">Network Overview</a>
     <a href="infrastructure.html">Infrastructure</a>
     <a href="identity-and-services.html">Identity & Services</a>
     <a href="/SOC Project/enterprize-services.html" class="active">Enterprise Services</a>
-    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
-    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
+    <a href="/SOC Project/security-stack.html">Security Stack</a>
+    <a href="/SOC Project/attack-and-detection-external.html">External Attacks</a>
+    <a href="/SOC Project/attack-and-detection-internal.html">Internal Attacks</a>
     <a href="/SOC Project/security-hardening.html">Security Hardening</a>
 </div>
 
-<div class="main">
+<main class="main">
 
-<h1>Enterprise Services</h1>
+<header>
+    <h1>Enterprise Services & Data Exposure</h1>
+</header>
+
+<!-- OVERVIEW -->
+<section class="card">
+    <h2>Phase Overview</h2>
+
+    <p>
+    This phase introduces core enterprise services that store, process, and expose organizational data.
+    These systems represent critical assets and are primary targets for attackers.
+    </p>
+
+    <p>
+    The goal is not only to deploy functional services, but to simulate realistic data access patterns,
+    permission structures, and logging behavior that can later be used for detection and analysis.
+    </p>
+</section>
 
 <!-- FILE SERVER -->
-<div class="card">
-    <h2>File Server (Windows Server)</h2>
+<section class="card">
+    <h2>File Server – Data Access & Permissions</h2>
 
     <div class="step">
-        <h3>Shared Folders & Permissions</h3>
+        <h3>Shared Folders & Access Control</h3>
 
         <p>
-            Configured shared folders on the Domain Controller to simulate
-            organizational file access.
+        A centralized file server was configured to simulate organizational data storage,
+        including department-based access control and permission enforcement.
         </p>
 
         <ul>
-            <li>Created shared directories</li>
-            <li>Assigned permissions to users and groups</li>
-            <li>Tested access from client machines</li>
+            <li>Created shared directories representing business units (HR, Finance, IT)</li>
+            <li>Assigned permissions based on user groups</li>
+            <li>Validated access behavior from domain-joined endpoints</li>
         </ul>
 
-        <h3 class="image-title">Network Configuration</h3>
+        <p><strong>Security relevance:</strong><br>
+        File servers are a primary target for attackers due to sensitive data exposure.
+        Misconfigured permissions can lead to unauthorized access and data exfiltration.
+        </p>
 
+        <!-- NETWORK -->
+        <h3 class="image-title">Host Configuration</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">IP configuration</p>
+                <p class="image-title">IP Configuration</p>
                 <img src="images/enterprize services/file server/PC CONF/ip conf.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">PC rename</p>
+                <p class="image-title">Host Rename</p>
                 <img src="images/enterprize services/file server/PC CONF/rename.png">
             </div>
         </div>
 
-        <h3 class="image-title">File Share Creation</h3>
-
+        <!-- CREATION -->
+        <h3 class="image-title">Share Creation</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">create folder</p>
+                <p class="image-title">Create Main Directory</p>
                 <img src="images/enterprize services/file server/FILE SHARE/create shares file.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">share main folder</p>
+                <p class="image-title">Share Root Folder</p>
                 <img src="images/enterprize services/file server/FILE SHARE/share main folder.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">create sub-folders</p>
+                <p class="image-title">Create Department Folders</p>
                 <img src="images/enterprize services/file server/FILE SHARE/create sub-folders.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">share sub-folders</p>
+                <p class="image-title">Share Department Folders</p>
                 <img src="images/enterprize services/file server/FILE SHARE/share sub folder.png">
             </div>
         </div>
 
-        <h3 class="image-title">File Share Permissions</h3>
-
+        <!-- PERMISSIONS -->
+        <h3 class="image-title">Access Control & Validation</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">Permissions: Read for everyone</p>
+                <p class="image-title">Read Access for General Users</p>
                 <img src="images/enterprize services/file server/FILE SHARE/read prem for everyone.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">Permissions: full control for IT admins</p>
+                <p class="image-title">Full Control for IT Administrators</p>
                 <img src="images/enterprize services/file server/FILE SHARE/full control for IT admins.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">IT admin trying to create file in Finance folder</p>
+                <p class="image-title">Unauthorized Access Attempt (Finance)</p>
                 <img src="images/enterprize services/file server/FILE SHARE/try modify finance .png">
             </div>
-            
+
             <div class="image-card">
-                <p class="image-title">IT admin fails to create file in Finance folder</p>
+                <p class="image-title">Access Denied – Enforcement Verified</p>
                 <img src="images/enterprize services/file server/FILE SHARE/try modify finance - fail .png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">IT admin succeeds to create file in IT folder</p>
+                <p class="image-title">Authorized Access (IT Folder)</p>
                 <img src="images/enterprize services/file server/FILE SHARE/try modify it- succes .png">
             </div>
         </div>
 
-        <h3 class="image-title">DNS</h3>
-
+        <!-- DNS -->
+        <h3 class="image-title">Name Resolution</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">nslookup</p>
+                <p class="image-title">DNS Resolution (nslookup)</p>
                 <img src="images/enterprize services/file server/FILE SHARE/nslookup.png">
             </div>
         </div>
     </div>
-</div>
+</section>
+
 <!-- WEB SERVER -->
-<div class="card">
-    <h2>Web Server (Ubuntu)</h2>
+<section class="card">
+    <h2>Web Server – Internal Application Simulation</h2>
 
     <div class="step">
-        <h3>Internal Web Service</h3>
+        <h3>Service Deployment</h3>
 
         <p>
-            Deployed a web server on Ubuntu to simulate internal applications.
+        An internal web server was deployed to simulate organizational applications
+        and generate network and application-level activity.
         </p>
 
         <ul>
-            <li>Installed Apache/</li>
-            <li>Hosted internal web page</li>
-            <li>Tested access from endpoints</li>
+            <li>Configured static IP using Netplan</li>
+            <li>Installed and enabled Apache2</li>
+            <li>Hosted internal web content</li>
+            <li>Validated connectivity from domain endpoints</li>
         </ul>
 
-        <h3 class="image-title">Network Configuration</h3>
+        <p><strong>Security relevance:</strong><br>
+        Web servers are common entry points for attackers and generate valuable logs
+        for detecting suspicious activity such as scanning, exploitation attempts, and abnormal access patterns.
+        </p>
 
+        <!-- NETWORK -->
+        <h3 class="image-title">Network Configuration</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">editing Netplan File</p>
+                <p class="image-title">Netplan Configuration</p>
                 <img src="images/enterprize services/web server/netplan.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">IP configured</p>
+                <p class="image-title">IP Verification</p>
                 <img src="images/enterprize services/web server/ip a.png">
             </div>
         </div>
 
-        <h3 class="image-title">Installing Apache</h3>
-
+        <!-- INSTALL -->
+        <h3 class="image-title">Apache Deployment</h3>
         <div class="VM-network-images">
             <div class="image-card">
                 <p class="image-title">Installing Apache2</p>
@@ -159,28 +191,28 @@
             </div>
 
             <div class="image-card">
-                <p class="image-title">Apache2 is installed and active</p>
+                <p class="image-title">Service Status</p>
                 <img src="images/enterprize services/web server/status apache.png">
             </div>
         </div>
 
-        <h3 class="image-title">Connecting to the server</h3>
-
+        <!-- ACCESS -->
+        <h3 class="image-title">Client Access & Logging</h3>
         <div class="VM-network-images">
             <div class="image-card">
-                <p class="image-title">Connecting to the web server from Windows Client</p>
+                <p class="image-title">Client Access to Web Server</p>
                 <img src="images/enterprize services/web server/web check.png">
             </div>
 
             <div class="image-card">
-                <p class="image-title">logs are collected when client is connecting to the server</p>
-                <img src="images/enterprize services/web server//access log.png">
+                <p class="image-title">Web Server Access Logs</p>
+                <img src="images/enterprize services/web server/access log.png">
             </div>
         </div>
-        
     </div>
-</div>
+</section>
 
+</main>
 
 <!-- MODAL -->
 <div id="imageModal" class="modal">

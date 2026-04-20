@@ -2,76 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network Overview</title>
     <link rel="stylesheet" href="network-overview.css">
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>SOC Lab</h2>
-    <a href="/index.html">🏠 Home</a>
-    <a href="../SOC Project/project-overview.html">Project Overview</a>
-    <a href="/SOC Project/Network-Overview.html" class="active">Network Overview</a>
-    <a href="/SOC Project/infrastracture.html">Infrastructure</a>
-    <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
-    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
-    <a href="/SOC Project/security-stack.html">Security Stack</a>
-    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
-    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
-    <a href="/SOC Project/security-hardening.html">Security Hardening</a>
-</div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <h2>SOC Project</h2>
+    <nav>
+        <a href="/index.html">🏠 Home</a>
+        <a href="../SOC Project/project-overview.html">Project Overview</a>
+        <a href="/SOC Project/Network-Overview.html" class="active">Network Overview</a>
+        <a href="/SOC Project/infrastracture.html">Infrastructure</a>
+        <a href="/SOC Project/identity-and-services.html">Identity & Services</a>
+        <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+        <a href="/SOC Project/security-stack.html">Security Stack</a>
+        <a href="/SOC Project/attack-and-detection-external.html">External Attacks</a>
+        <a href="/SOC Project/attack-and-detection-internal.html">Internal Attacks</a>
+        <a href="/SOC Project/security-hardening.html">Security Hardening</a>
+    </nav>
+</aside>
 
-<div class="main">
+<!-- MAIN -->
+<main class="main">
 
-<h1>Network Overview</h1>
+    <header>
+        <h1>Network Architecture & Segmentation</h1>
+    </header>
 
-<!-- ARCHITECTURE -->
-<div class="card">
-    <h2>Network Architecture</h2>
+    <!-- OVERVIEW -->
+    <section class="card">
+        <h2>Overview</h2>
 
-    <ul class="network-list">
-        <li><strong>Internal Network:</strong> 192.168.59.0/24</li>
-        <li><strong>Domain Controller:</strong> 192.168.59.10</li>
-        <li><strong>SIEM Server:</strong> 192.168.59.40 / 192.168.100.1</li>
-        <li><strong>Clients:</strong> DHCP range</li>
-        <li><strong>Attacker Network:</strong> 192.168.100.0/24</li>
-    </ul>
+        <p>
+        The lab environment is designed to simulate a segmented enterprise network,
+        separating internal infrastructure from external attacker access.
+        This segmentation enables realistic simulation of intrusion scenarios,
+        lateral movement, and detection workflows.
+        </p>
 
-    <p class="why-text">
-        The lab is divided into internal corporate and attacker networks,
-        allowing realistic simulation of lateral movement and external threats.
-    </p>
-</div>
+        <p>
+        The architecture combines identity services, enterprise systems,
+        and centralized monitoring to reflect a real-world organizational environment.
+        </p>
+    </section>
 
-<!-- DIAGRAM -->
-<div class="card">
-    <h2>Network Diagram</h2>
+    <!-- NETWORK DESIGN -->
+    <section class="card">
+        <h2>Network Design</h2>
 
-    <img src="images/Network Diagram.png" alt="Network Diagram" class="diagram">
-</div>
+        <ul class="network-list">
+            <li><strong>Internal Network (192.168.59.0/24):</strong> Corporate infrastructure and endpoints</li>
+            <li><strong>Attacker Network (192.168.100.0/24):</strong> External threat simulation environment</li>
+            <li><strong>SIEM Dual-Homed Configuration:</strong> Connected to both networks for log collection and visibility</li>
+        </ul>
 
-<!-- COMPONENTS -->
-<div class="card">
-    <h2>Key Components</h2>
+        <p class="why-text">
+        The separation between internal and attacker networks allows controlled simulation
+        of external attacks while maintaining visibility across both environments.
+        </p>
+    </section>
 
-    <ul class="components-list">
-        <li><strong>Domain Controller:</strong> Identity, DNS, DHCP</li>
-        <li><strong>SIEM Server:</strong> Log collection and detection</li>
-        <li><strong>Endpoints:</strong> User activity simulation</li>
-        <li><strong>Attacker Machine:</strong> Offensive testing</li>
-    </ul>
-</div>
+    <!-- IP ALLOCATION -->
+    <section class="card">
+        <h2>IP Addressing & Key Systems</h2>
 
-<div class="card">
-    <h2>Why This Matters</h2>
+        <ul class="network-list">
+            <li><strong>Domain Controller:</strong> 192.168.59.10</li>
+            <li><strong>File Server:</strong> 192.168.59.20</li>
+            <li><strong>Web server:</strong> 192.168.59.30</li>
+            <li><strong>SIEM Server:</strong> 192.168.59.40 (internal) / 192.168.100.1 (attacker-facing)</li>
+            <li><strong>Endpoints:</strong> DHCP-assigned within internal network</li>
+            <li><strong>Attacker Machine:</strong>192.168.100.10 (Located within attacker network segment)</li>
+        </ul>
+    </section>
 
-    <p class="why-text">
-        Understanding network architecture is critical for detecting anomalies,
-        identifying lateral movement, and analyzing attack patterns.
-    </p>
-</div>
+    <!-- DIAGRAM -->
+    <section class="card">
+        <h2>Network Diagram</h2>
 
-</div>
+        <img src="images/Network Diagram.png" alt="Network Diagram" class="diagram">
+    </section>
+
+    <!-- DATA FLOW -->
+    <section class="card">
+        <h2>Traffic Flow & Visibility</h2>
+
+        <ul class="components-list">
+            <li>Endpoints generate authentication and activity logs (Windows Event Logs, Sysmon)</li>
+            <li>Logs are forwarded to the SIEM server for analysis and correlation</li>
+            <li>Network traffic is monitored by Suricata IDS for anomaly detection</li>
+            <li>Attacker traffic originates from the external network and targets internal systems</li>
+        </ul>
+
+        <p class="why-text">
+        This setup enables full visibility across endpoint, network, and attacker activity,
+        supporting effective detection and investigation workflows.
+        </p>
+    </section>
+
+    <!-- SECURITY CONTEXT -->
+    <section class="card">
+        <h2>Security Considerations</h2>
+
+        <p>
+        Network segmentation is a critical control that limits attack surface and enables detection.
+        By isolating attacker infrastructure from internal systems, the lab accurately models
+        real-world threat scenarios such as initial access and lateral movement.
+        </p>
+
+        <p>
+        The dual-homed SIEM architecture ensures visibility across both segments,
+        allowing correlation between external attack activity and internal system behavior.
+        </p>
+    </section>
+
+</main>
 
 </body>
 </html>

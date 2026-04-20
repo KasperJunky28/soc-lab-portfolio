@@ -2,149 +2,186 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infrastructure Setup</title>
     <link rel="stylesheet" href="../SOC Project/infrastracture.css">
 </head>
 
 <body>
 
+<!-- IMAGE MODAL -->
 <div id="imageModal" class="modal">
     <span class="close">&times;</span>
     <img class="modal-content" id="modalImg">
 </div>
 
-<div class="sidebar">
-    <h2>SOC Lab</h2>
-    <a href="../index.html">🏠 Home</a>
-    <a href="../SOC Project/project-overview.html">Project Overview</a>
-    <a href="../SOC Project/Network-Overview.html">Network Overview</a>
-    <a href="../SOC Project/infrastracture.html" class="active">Infrastructure</a>
-    <a href="../SOC Project/identity-and-services.html">identity and services</a>
-    <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
-    <a href="/SOC Project/security-stack.html">Security Stack</a>
-    <a href="/SOC Project/attack-and-detection-external.html">Attack & Detection - External attacks</a>
-    <a href="/SOC Project/attack-and-detection-internal.html">Attack & Detection - Internal attacks</a>
-    <a href="/SOC Project/security-hardening.html">Security Hardening</a>
-</div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <h2>SOC Project</h2>
+    <nav>
+        <a href="../index.html">🏠 Home</a>
+        <a href="../SOC Project/project-overview.html">Project Overview</a>
+        <a href="../SOC Project/Network-Overview.html">Network Overview</a>
+        <a href="../SOC Project/infrastracture.html" class="active">Infrastructure</a>
+        <a href="../SOC Project/identity-and-services.html">Identity & Services</a>
+        <a href="/SOC Project/enterprize-services.html">Enterprise Services</a>
+        <a href="/SOC Project/security-stack.html">Security Stack</a>
+        <a href="/SOC Project/attack-and-detection-external.html">External Attacks</a>
+        <a href="/SOC Project/attack-and-detection-internal.html">Internal Attacks</a>
+        <a href="/SOC Project/security-hardening.html">Security Hardening</a>
+    </nav>
+</aside>
 
-<div class="main">
+<!-- MAIN -->
+<main class="main">
 
-<h1>Infrastructure Setup</h1>
+    <header>
+        <h1>Infrastructure Design & Deployment</h1>
+    </header>
 
-<div class="card">
-    <h2>Phase Goal</h2>
-    <p>
-        Build a fully functional lab environment with proper network communication
-        between all machines to simulate a real organizational network.
-    </p>
-</div>
-
-<div class="card">
-
-    <h2>Steps</h2>
-
-    <div class="step">
-        <h3>VM Deployment</h3>
+    <!-- OVERVIEW -->
+    <section class="card">
+        <h2>Phase Overview</h2>
 
         <p>
-            Created multiple virtual machines to simulate different components
-            of an enterprise environment.
+        This phase focuses on building the foundational infrastructure required to simulate
+        a realistic enterprise environment. The goal is to create a stable, segmented, and
+        fully functional lab that supports identity services, enterprise applications,
+        and security monitoring.
         </p>
-
-        <p><strong>Why this matters:</strong><br>
-        A controlled lab environment enables safe testing, attack simulation,
-        and security analysis without affecting real systems.
-        </p>
-
-        <ul>
-            <li>Windows Server - Domain Controller, File Server</li>
-            <li>Windows 10 - Clients</li>
-            <li>Ubuntu - Web server, Wazuh SIEM server</li>
-            <li>Kali Linux - Attacker Machine</li>
-        </ul>
-
-        <div class="images">
-            <div class="image-title">VM's preview</div>
-            <img src="/SOC Project/images/VM network conf/virtual machines preview.png" alt="VM Setup">
-        </div>
-    </div>
-
-    <div class="step">
-        <h3>VM Network Configuration</h3>
 
         <p>
-            Configured internal networking between all virtual machines,
-            including separation between internal network and internet access (NAT).
+        The infrastructure is designed to enable controlled attack simulation while maintaining
+        full visibility across systems, users, and network activity.
         </p>
+    </section>
 
-        <p><strong>Why this matters:</strong><br>
-        Understanding network architecture is critical for detecting suspicious traffic
-        and identifying lateral movement within an organization.
-        </p>
+    <!-- DESIGN PRINCIPLES -->
+    <section class="card">
+        <h2>Design Principles</h2>
 
         <ul>
-            <li>Internal Network setup - Corp network/attacker network</li>
-            <li>NAT for internet access</li>
+            <li><strong>Isolation:</strong> Separation between internal infrastructure and attacker environment</li>
+            <li><strong>Realism:</strong> Replication of enterprise components (AD, file server, endpoints)</li>
+            <li><strong>Visibility:</strong> Ensure all systems generate logs for monitoring and detection</li>
+            <li><strong>Scalability:</strong> Modular design allowing expansion of services and attack scenarios</li>
         </ul>
+    </section>
 
-        <div class="VM-network-images">
+    <!-- STEPS -->
+    <section class="card">
+        <h2>Implementation Steps</h2>
 
-            <div class="image-card">
-                <div class="image-title">DC01 Machine Network Settings</div>
-                <img src="/SOC Project/images/VM network conf/DC01.png" alt="DC01">
-            </div>
-        
-            <div class="image-card">
-                <div class="image-title">FILE01 Machine Network Settings</div>
-                <img src="/SOC Project/images/VM network conf/FILE01.png" alt="FILE01">
-            </div>
+        <!-- STEP 1 -->
+        <div class="step">
+            <h3>Virtual Machine Deployment</h3>
 
-            <div class="image-card">
-                <div class="image-title">HR01 Machine Network Settings</div>
-                <img src="/SOC Project/images/VM network conf/HR01.png" alt="HR01">
-            </div>
-        
-            <div class="image-card">
-                <div class="image-title">IT01 Machine Network Settings</div>
-                <img src="/SOC Project/images/VM network conf/IT01.png" alt="IT01">
-            </div>
+            <p>
+            Multiple virtual machines were deployed to represent different roles within
+            an enterprise environment, including identity services, endpoints, servers,
+            and attacker systems.
+            </p>
 
-            <div class="image-card">
-                <div class="image-title">WEB01 Machine Network Settings - Corp Network</div>
-                <img src="/SOC Project/images/VM network conf/WEB01 - CORP.png" alt="WEB01-CORP">
-            </div>
-        
-            <div class="image-card">
-                <div class="image-title">WEB01 Machine Network Settings - NAT (internet)</div>
-                <img src="/SOC Project/images/VM network conf/WEB01 - NAT.png" alt="WEB01-NAT">
-            </div>
+            <p><strong>Key Components:</strong></p>
+            <ul>
+                <li>Windows Server – Domain Controller and File Server</li>
+                <li>Windows 10 – User endpoints (HR, IT)</li>
+                <li>Ubuntu Server – Web server and Wazuh SIEM</li>
+                <li>Kali Linux – Adversary simulation</li>
+            </ul>
 
-            <div class="image-card">
-                <div class="image-title">SIEM01 Machine Network Settings - Corp Network</div>
-                <img src="/SOC Project/images/VM network conf/SIEM01 - CORP.png" alt="SIEM01 - CORP">
-            </div>
-        
-            <div class="image-card">
-                <div class="image-title">SIEM01 Machine Network Settings - NAT</div>
-                <img src="/SOC Project/images/VM network conf/SIEM01 - NATpng.png" alt="SIEM01 - NAT">
-            </div>
+            <p><strong>Why this matters:</strong><br>
+            Using role-based virtual machines enables realistic simulation of enterprise operations,
+            user behavior, and attack surfaces.
+            </p>
 
-            <div class="image-card">
-                <div class="image-title">SIEM01 Machine Network Settings - Attacker Network</div>
-                <img src="/SOC Project/images/VM network conf/SIEM01 - ATTACK.png" alt="SIEM01 - ATTACK">
+            <div class="images">
+                <div class="image-title">Virtual Machine Deployment Overview</div>
+                <img src="/SOC Project/images/VM network conf/virtual machines preview.png" alt="VM Setup">
             </div>
-        
-            <div class="image-card">
-                <div class="image-title">KALI01 Machine Network Settings - Attacker Network</div>
-                <img src="/SOC Project/images/VM network conf/KALI - ATTACK.png" alt="KALI01 - ATTACK">
-            </div>
-        
         </div>
-    </div>
 
-</div>
+        <!-- STEP 2 -->
+        <div class="step">
+            <h3>Network Configuration & Segmentation</h3>
 
-</div>
+            <p>
+            Network connectivity was configured to simulate both internal corporate communication
+            and controlled external attacker access.
+            </p>
+
+            <p><strong>Configuration Highlights:</strong></p>
+            <ul>
+                <li>Internal corporate network for domain-joined systems</li>
+                <li>Dedicated attacker network for adversary simulation</li>
+                <li>NAT configuration to enable controlled internet access</li>
+                <li>Dual-network interfaces on critical systems (e.g., SIEM)</li>
+            </ul>
+
+            <p><strong>Why this matters:</strong><br>
+            Proper segmentation is essential for modeling real-world attack paths,
+            including initial access, lateral movement, and detection opportunities.
+            </p>
+
+            <div class="VM-network-images">
+
+                <div class="image-card">
+                    <div class="image-title">DC01 Network Configuration</div>
+                    <img src="/SOC Project/images/VM network conf/DC01.png" alt="DC01">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">FILE01 Network Configuration</div>
+                    <img src="/SOC Project/images/VM network conf/FILE01.png" alt="FILE01">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">HR01 Network Configuration</div>
+                    <img src="/SOC Project/images/VM network conf/HR01.png" alt="HR01">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">IT01 Network Configuration</div>
+                    <img src="/SOC Project/images/VM network conf/IT01.png" alt="IT01">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">WEB01 – Internal Network</div>
+                    <img src="/SOC Project/images/VM network conf/WEB01 - CORP.png" alt="WEB01-CORP">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">WEB01 – NAT Configuration</div>
+                    <img src="/SOC Project/images/VM network conf/WEB01 - NAT.png" alt="WEB01-NAT">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">SIEM01 – Internal Network</div>
+                    <img src="/SOC Project/images/VM network conf/SIEM01 - CORP.png" alt="SIEM01-CORP">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">SIEM01 – NAT Configuration</div>
+                    <img src="/SOC Project/images/VM network conf/SIEM01 - NATpng.png" alt="SIEM01-NAT">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">SIEM01 – Attacker Network</div>
+                    <img src="/SOC Project/images/VM network conf/SIEM01 - ATTACK.png" alt="SIEM01-ATTACK">
+                </div>
+
+                <div class="image-card">
+                    <div class="image-title">KALI01 – Attacker Network</div>
+                    <img src="/SOC Project/images/VM network conf/KALI - ATTACK.png" alt="KALI01">
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
 <script src="../script.js"></script>
 </body>
 </html>

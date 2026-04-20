@@ -9,7 +9,7 @@
 body {
     font-family: "Segoe UI", sans-serif;
     display: flex;
-    background: radial-gradient(circle at top, #0f172a, #020617);
+    background-color: #0b0f19;
     color: #e5e7eb;
 }
 
@@ -52,8 +52,8 @@ body {
 /* MAIN */
 .main {
     margin-left: 250px;
-    padding: 40px;
-    width: 100%;
+    padding: 40px 60px;
+    width: calc(100% - 250px);
 }
 
 /* HEADERS */
