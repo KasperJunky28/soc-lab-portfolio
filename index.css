@@ -153,6 +153,20 @@ body {
     line-height: 1.6;
 }
 
+.card ul {
+    margin-top: 12px;
+    padding-left: 20px;
+}
+
+.card ul li {
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+.card strong {
+    color: #ef4444;
+}
+
 /* SKILLS */
 .skills-grid {
     display: grid;
